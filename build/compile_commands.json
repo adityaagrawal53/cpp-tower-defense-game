@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/horse02/cpp-course/tower-defense-santeri-salmela-6/build",
+  "command": "/usr/bin/g++  -I/home/horse02/cpp-course/tower-defense-santeri-salmela-6/. -I/home/horse02/cpp-course/tower-defense-santeri-salmela-6/src -g -Wall -Wextra -pedantic -Wno-missing-field-initializers -o CMakeFiles/tower_defense.dir/src/main.cpp.o -c /home/horse02/cpp-course/tower-defense-santeri-salmela-6/src/main.cpp",
+  "file": "/home/horse02/cpp-course/tower-defense-santeri-salmela-6/src/main.cpp"
+}
+]
