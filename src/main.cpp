@@ -5,6 +5,10 @@ int main()
 {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+
+    //Centers window
+    auto desktop = sf::VideoMode::getDesktopMode();
+    window.setPosition(sf::Vector2i(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2));
  
     // Load a sprite to display
     sf::Texture texture;
