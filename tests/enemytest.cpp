@@ -1,6 +1,7 @@
 #include <list>
 #include <iostream>
 #include <math.h>           //Trigonometric functions
+#include <queue>
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -27,16 +28,17 @@ int main() {
         Checkpoint(float x_val, float y_val, int t_val): x(x_val), y(y_val), t(t_val) {};
     };
 
-    Checkpoint checkpoint1 = {300, 200, 10};
-    Checkpoint checkpoint2 = {350, 400, 20};
-    Checkpoint checkpoint3 = {500, 100, 10};
-    Checkpoint checkpoint4 = {500, 300, 20};
-    Checkpoint checkpoint5 = {300, 400, 10};
-    Checkpoint checkpoint6 = {500, 400, 20};
-    Checkpoint checkpoint7 = {300, 500, 10};
-    Checkpoint checkpoint8 = {500, 500, 20};
-    Checkpoint checkpoint9 = {500, 600, 30};
-    Checkpoint checkpoint0 = {600, 300, 40};
+    //TODO: wait in seconds
+    Checkpoint checkpoint1 = {300, 200, 300};
+    Checkpoint checkpoint2 = {350, 400, 200};
+    Checkpoint checkpoint3 = {500, 100, 0};
+    Checkpoint checkpoint4 = {600, 300, 0};
+    Checkpoint checkpoint5 = {600, 400, 0};
+    Checkpoint checkpoint6 = {500, 400, 0};
+    Checkpoint checkpoint7 = {300, 500, 0};
+    Checkpoint checkpoint8 = {500, 500, 0};
+    Checkpoint checkpoint9 = {500, 600, 0};
+    Checkpoint checkpoint0 = {600, 300, 0};
 
     sf::CircleShape cp1(15.f);
     sf::CircleShape cp2(15.f);
@@ -90,26 +92,23 @@ int main() {
     cp0.setPosition(checkpoint0.x, checkpoint0.y);
 
     // Add Checkpoints to the list
-    std::vector<Checkpoint> checkpoints;
+    std::queue<Checkpoint> checkpoints;
     
-    checkpoints.push_back(checkpoint1);
-    checkpoints.push_back(checkpoint2);
-    checkpoints.push_back(checkpoint3);
-    checkpoints.push_back(checkpoint4);
-    checkpoints.push_back(checkpoint5);
-    checkpoints.push_back(checkpoint6);
-    checkpoints.push_back(checkpoint7);
-    checkpoints.push_back(checkpoint8);
-    checkpoints.push_back(checkpoint9);
-    checkpoints.push_back(checkpoint0);
+    checkpoints.push(checkpoint1);
+    checkpoints.push(checkpoint2);
+    checkpoints.push(checkpoint3);
+    checkpoints.push(checkpoint4);
+    checkpoints.push(checkpoint5);
+    checkpoints.push(checkpoint6);
+    checkpoints.push(checkpoint7);
+    checkpoints.push(checkpoint8);
+    checkpoints.push(checkpoint9);
+    checkpoints.push(checkpoint0);
 
-    // Keeps track of next checkpoint
-    size_t idx = 1;
+    float xPos = 0;
+    float yPos = 0;
 
-    float xPos = checkpoint1.x;
-    float yPos = checkpoint1.y;
-
-    float vel = 3.f;
+    float vel = 1.3f;
 
     float xVel = 0;
     float yVel = 0;
@@ -123,28 +122,24 @@ int main() {
         sf::Vector2i position = sf::Mouse::getPosition();
         //std::cout << "Mouse position: x = " << position.x  << " y == " << position.y << std::endl;
 
-        //Keeps track of current checkpoint
-        Checkpoint nextCP = checkpoints[idx];
+        //Keeps track of next checkpoint
+        Checkpoint nextCP = checkpoints.front();
 
         float xDist, yDist;
         double theta;
 
         //Measure distance from current position to next checkpoint
-        if(idx < checkpoints.size()) {
-            xDist = nextCP.x - xPos;
-            yDist = nextCP.y - yPos;
-            theta = atan(abs(yDist / xDist));
+        xDist = nextCP.x - xPos;
+        yDist = nextCP.y - yPos;
+        if(xDist == 0) {
+            //arctan of infinity is pi/2
+            theta = M_PI / 2;
         } else {
-            xDist = 0;
-            yDist = 0;
-            theta = 0;
+            theta = atan(abs(yDist / xDist));
         }
 
         //Update velocity
-        if(idx >= checkpoints.size()) {
-            xVel = 0;
-            yVel = 0;
-        } else {
+        if(!checkpoints.empty()) {
             if(abs(xDist) <= abs(vel * cos(theta))) {
                 xVel = abs(xDist);
             } else {
@@ -155,8 +150,11 @@ int main() {
             } else {
                 yVel = vel * sin(theta);
             }
+        } else {
+            xVel = 0;
+            yVel = 0;
         }
-        
+
         //Move in direction
         if(xDist < 0) {
             xPos -= xVel;
@@ -170,10 +168,14 @@ int main() {
             yPos += yVel;
         }
 
-        //Update current checkpoint
-        if(idx < checkpoints.size()) {
-            if(xPos == nextCP.x && yPos == nextCP.y) {
-                idx += 1;
+        //Reached checkpoint
+        if(xPos == nextCP.x && yPos == nextCP.y) {
+            if(checkpoints.front().t >= 0) {
+                //Wait there
+                checkpoints.front().t -= 1;
+            } else {
+                //Continue to next checkpoint
+                checkpoints.pop();
             }
         }
 
@@ -193,7 +195,6 @@ int main() {
         window.draw(cp1);
         window.draw(cp2);
         window.draw(cp3);
-        
         window.draw(cp4);
         window.draw(cp5);
         window.draw(cp6);
