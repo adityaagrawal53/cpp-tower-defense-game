@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <queue>
 #include <string>
 
 /**
@@ -56,13 +56,6 @@ class Enemy {
     int GetHP() const;
 
     /**
-     * \brief Returns the Enemy's movement speed as a float.
-     * 
-     * \return Enemy's HP as a float
-    */
-    float GetSpeed() const;
-
-    /**
      * \brief Attack a nearby tower
      * 
      * TODO: Define tower
@@ -73,5 +66,5 @@ class Enemy {
     int HP_;
     float speed_;
     int ATK_;
-    std::list<Checkpoint> checkpoints_;
+    std::queue<Checkpoint> checkpoints_;
 };
