@@ -2,6 +2,7 @@
 
 #include <queue>
 #include <string>
+#include <math.h>           //Trigonometric functions
 
 /**
  * \brief class Checkpoint determines how the enemy should move
@@ -41,12 +42,12 @@ class Enemy {
      * \param ATK enemy attack (how much damage it can deal)
      * \param XP enemy XP worth (how much XP enemy gives when destroyed)
     */
-    Enemy(int HP, float speed, int ATK, int XP);
+    Enemy(int HP, float speed, int ATK, int XP, std::queue<Checkpoint> checkpoints);
 
     /**
      * \brief Virtual destroyer
     */
-    virtual ~Enemy() {};
+    //virtual ~Enemy() {};
 
     /**
      * \brief Returns the Enemy's HP as an integer.
@@ -62,9 +63,24 @@ class Enemy {
     */
     //void attack();
 
+    /**
+     * \brief Returns the Enemy's position as a float.
+     * 
+     * \return Enemy's position as a float.
+    */
+    float getXPos() const;
+    float getYPos() const;
+
+    /**
+     * \brief Moves Enemy.
+    */
+    void move();
+
   private:
     int HP_;
     float speed_;
     int ATK_;
+    int XP_;
+    float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
 };
