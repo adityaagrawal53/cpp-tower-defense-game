@@ -6,6 +6,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "enemy.cpp"
+
 int main() {
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
@@ -18,15 +20,6 @@ int main() {
     shape.setFillColor(sf::Color::Green);
     shape.setOrigin(35.f, 35.f);
 
-    //Linked list of checkpoints
-    struct Checkpoint {
-        float x;
-        float y;
-        int t;              //TODO: implement waiting mechanism
-
-        //Constructor,
-        Checkpoint(float x_val, float y_val, int t_val): x(x_val), y(y_val), t(t_val) {};
-    };
 
     //TODO: wait in seconds
     Checkpoint checkpoint1 = {300, 200, 300};
@@ -105,13 +98,7 @@ int main() {
     checkpoints.push(checkpoint9);
     checkpoints.push(checkpoint0);
 
-    float xPos = 0;
-    float yPos = 0;
-
-    float vel = 1.3f;
-
-    float xVel = 0;
-    float yVel = 0;
+    Enemy* test = new Enemy(30, 1.3f, 5, 5, checkpoints);
     
     // Start the game loop
     while (window.isOpen()) {
@@ -122,62 +109,7 @@ int main() {
         sf::Vector2i position = sf::Mouse::getPosition();
         //std::cout << "Mouse position: x = " << position.x  << " y == " << position.y << std::endl;
 
-        //Keeps track of next checkpoint
-        Checkpoint nextCP = checkpoints.front();
-
-        float xDist, yDist;
-        double theta;
-
-        //Measure distance from current position to next checkpoint
-        xDist = nextCP.x - xPos;
-        yDist = nextCP.y - yPos;
-        if(xDist == 0) {
-            //arctan of infinity is pi/2
-            theta = M_PI / 2;
-        } else {
-            theta = atan(abs(yDist / xDist));
-        }
-
-        //Update velocity
-        if(!checkpoints.empty()) {
-            if(abs(xDist) <= abs(vel * cos(theta))) {
-                xVel = abs(xDist);
-            } else {
-                xVel = vel * cos(theta);
-            }
-            if(abs(yDist) <= abs(vel * sin(theta))) {
-                yVel = abs(yDist);
-            } else {
-                yVel = vel * sin(theta);
-            }
-        } else {
-            xVel = 0;
-            yVel = 0;
-        }
-
-        //Move in direction
-        if(xDist < 0) {
-            xPos -= xVel;
-        } else {
-            xPos += xVel;
-        }
-
-        if(yDist < 0) {
-            yPos -= yVel;
-        } else {
-            yPos += yVel;
-        }
-
-        //Reached checkpoint
-        if(xPos == nextCP.x && yPos == nextCP.y) {
-            if(checkpoints.front().t >= 0) {
-                //Wait there
-                checkpoints.front().t -= 1;
-            } else {
-                //Continue to next checkpoint
-                checkpoints.pop();
-            }
-        }
+        test->move();
 
         while (window.pollEvent(event)) {
             // Close window: exit
@@ -189,7 +121,7 @@ int main() {
         window.clear();
  
         // Draw the sprite
-        shape.setPosition(xPos, yPos);
+        shape.setPosition(test->getXPos(), test->getYPos());
         window.draw(shape);
 
         window.draw(cp1);
