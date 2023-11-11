@@ -54,7 +54,14 @@ class Enemy {
      * 
      * \return Enemy's HP as an integer
     */
-    int GetHP() const;
+    int getHP() const;
+
+    /**
+     * \brief Changes the Enemy HP to a certain value.
+     * 
+     * \param amount New current HP
+    */
+    void setHP(int amount);
 
     /**
      * \brief Attack a nearby tower

@@ -6,7 +6,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "enemy.cpp"
+#include "enemy/enemy.cpp"
 
 int main() {
     // Create the main window
@@ -15,11 +15,6 @@ int main() {
     //Centers window
     auto desktop = sf::VideoMode::getDesktopMode();
     window.setPosition(sf::Vector2i(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2));
- 
-    sf::CircleShape shape(35.f);
-    shape.setFillColor(sf::Color::Green);
-    shape.setOrigin(35.f, 35.f);
-
 
     //TODO: wait in seconds
     Checkpoint checkpoint1 = {300, 200, 300};
@@ -98,7 +93,14 @@ int main() {
     checkpoints.push(checkpoint9);
     checkpoints.push(checkpoint0);
 
-    Enemy* test = new Enemy(30, 1.3f, 5, 5, checkpoints);
+    // List of enemies
+    std::list<Enemy*> enemies;
+    
+    Enemy* test = new Enemy(30, 0.3f, 5, 5, checkpoints);
+    Enemy* test2 = new Enemy(20, 0.5f, 5, 5, checkpoints);
+
+    enemies.push_back(test);
+    enemies.push_back(test2);
     
     // Start the game loop
     while (window.isOpen()) {
@@ -108,21 +110,43 @@ int main() {
         //Mouse position
         sf::Vector2i position = sf::Mouse::getPosition();
         //std::cout << "Mouse position: x = " << position.x  << " y == " << position.y << std::endl;
-
-        test->move();
+        std::cout << "enemy HP: " << test->getHP() << std::endl;
 
         while (window.pollEvent(event)) {
             // Close window: exit
-            if (event.type == sf::Event::Closed)
+            if(event.type == sf::Event::Closed) {
                 window.close();
+            }
+            
+            // Click to damage
+            if(event.type == sf::Event::MouseButtonPressed) {
+                if(event.mouseButton.button == sf::Mouse::Left) {
+                    std::cout << "Damage" << std::endl;
+                    for(auto e : enemies) {
+                        e->setHP(e->getHP() - 3);
+                    }
+                }
+            }
         }
  
         // Clear screen
         window.clear();
  
         // Draw the sprite
-        shape.setPosition(test->getXPos(), test->getYPos());
-        window.draw(shape);
+        // Remove dead enemies(0 HP or less)
+        enemies.remove_if([](Enemy* e) { return e->getHP() <= 0; });
+        
+        // 
+        for(auto e : enemies) {
+            sf::CircleShape shape(35.f);
+            shape.setFillColor(sf::Color::Green);
+            shape.setOrigin(35.f, 35.f);
+            
+            shape.setPosition(e->getXPos(), e->getYPos());
+            window.draw(shape);
+
+            e->move();
+        }
 
         window.draw(cp1);
         window.draw(cp2);
@@ -135,7 +159,6 @@ int main() {
         window.draw(cp9);
         window.draw(cp0);
         
- 
         // Update the window
         window.display();
     }

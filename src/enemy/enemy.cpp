@@ -5,8 +5,12 @@ Enemy::Enemy(int HP, float speed, int ATK, int XP, std::queue<Checkpoint> checkp
     yPos_ = checkpoints.front().y;
 }
 
-int Enemy::GetHP() const {
+int Enemy::getHP() const {
     return HP_;
+}
+
+void Enemy::setHP(int amount) {
+    HP_ = amount;
 }
 
 float Enemy::getXPos() const {
