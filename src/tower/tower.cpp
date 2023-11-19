@@ -1,13 +1,14 @@
 #include "tower.hpp"
 #include <iostream>
 
-Tower::Tower(std::string name, int damage, double range, int cost) : name(name), damage(damage), range(range), cost(cost) {}
+Tower::Tower(std::string name, int damage, double range, int cost, int damageOverTime): name(name), damage(damage), range(range), cost(cost), damageOverTime(damageOverTime) {}
 
 void Tower::printTowerInfo() const {
     std::cout << "Tower Name: " << name << std::endl;
     std::cout << "Damage: " << damage << std::endl;
     std::cout << "Range: " << range << std::endl;
     std::cout << "Cost: " << cost << std::endl;
+    std::cout << "Damage Over Time: " << damageOverTime << std::endl;
 }
 
 std::string Tower::getName() const {
@@ -40,4 +41,12 @@ int Tower::getCost() const {
 
 void Tower::setCost(int cost) {
     this->cost = cost;
+}
+
+int Tower::getDamageOverTime() const {
+    return damageOverTime;
+}
+
+void Tower::setDamageOverTime(int damageOverTime) {
+    this->damageOverTime = damageOverTime;
 }
