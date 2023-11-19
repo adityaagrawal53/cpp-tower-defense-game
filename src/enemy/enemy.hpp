@@ -58,6 +58,7 @@ class Enemy {
 
     /**
      * \brief Changes the Enemy HP to a certain value.
+     *        If HP is set to 0 or less, dies.
      * 
      * \param amount New current HP
     */
@@ -83,6 +84,18 @@ class Enemy {
     */
     void move();
 
+    /**
+     * \brief Do something when the enemy dies (sets `dead` to true by default).
+    */
+    virtual void die();
+
+    /**
+     * \brief Returns the Enemy's current Checkpoint list.
+     * 
+     * \return Enemy's Checkpoint list.
+    */
+    std::queue<Checkpoint> getCheckpoints() const;
+
   private:
     int HP_;
     float speed_;
@@ -90,4 +103,7 @@ class Enemy {
     int XP_;
     float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
+  
+  protected:
+    bool dead = false;
 };

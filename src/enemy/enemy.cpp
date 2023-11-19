@@ -11,6 +11,9 @@ int Enemy::getHP() const {
 
 void Enemy::setHP(int amount) {
     HP_ = amount;
+    if(HP_ <= 0) {
+        die();
+    }
 }
 
 float Enemy::getXPos() const {
@@ -68,4 +71,12 @@ void Enemy::move() {
             checkpoints_.pop();
         }
     }
+}
+
+void Enemy::die() {
+    dead = true;
+}
+
+std::queue<Checkpoint> Enemy::getCheckpoints() const {
+    return checkpoints_;
 }
