@@ -4,9 +4,9 @@
 #include <string>
 #include "tower.hpp"
 
-class Plant : public Tower {
+class Fire : public Tower {
 public:
-    Plant(std::string name = "Plant", int damage = 5, int hp = 25 double range = 2.0, int cost = 25, int damageOverTime = 5);
+    Fire(std::string name = "Fire", int damage = 5, int hp = 25 double range = 2.0, int cost = 25, int damageOverTime = 5);
 
 private:
 };
