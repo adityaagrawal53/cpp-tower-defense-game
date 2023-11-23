@@ -5,7 +5,7 @@
 
 class Tower {
 public:
-    Tower(std::string name, int damage, double range, int cost, int damageOverTime);
+    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime);
 
     // Method to display tower stats
     void printTowerInfo() const;
@@ -15,6 +15,8 @@ public:
     void setName(std::string name);
     int getDamage() const;
     void setDamage(int damage);
+    int getHealth();
+    void setHealth(int hp);
     double getRange() const;
     void setRange(double range);
     int getCost() const;
