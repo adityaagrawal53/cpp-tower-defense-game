@@ -18,8 +18,8 @@ public:
     // Main game loop
     void run();
 
-    const std::vector<Tower>& getTowers() const;
-    const std::vector<Enemy>& getEnemies() const;
+    std::vector<Tower>& getTowers();
+    std::vector<Enemy>& getEnemies();
 
     int getPlayerHealth() const;
     void setPlayerHealth(int health);
@@ -36,8 +36,7 @@ public:
 private:
     sf::RenderWindow window;
     GridMap map;
-    std::vector<Enemy> enemies;
-    std::vector<Tower> towers;
+
     sf::Clock clock;
 
     // Game variables
@@ -45,7 +44,8 @@ private:
     int playerScore;
     int currentWave;
     int playerMoney;
-
+    std::vector<Enemy> enemies;
+    std::vector<Tower> towers;
     
 
 
