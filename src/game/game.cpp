@@ -143,3 +143,54 @@ void Game::initialize() {
     loadWave(currentWave);
 }
 
+void Game::loadWave(int waveNumber) {
+    // Construct filenames for map and enemy configuration
+    std::string mapConfigFile = "wave" + std::to_string(waveNumber) + "_map_config.txt";
+    std::string enemyConfigFile = "wave" + std::to_string(waveNumber) + "_enemy_config.txt";
+
+    // Load map and enemies for the wave
+    loadMap(mapConfigFile);
+    loadEnemies(enemyConfigFile);
+}
+
+void Game::loadMap(const std::string& mapConfigFile) {
+    std::ifstream mapConfigStream(mapConfigFile);
+    if (!mapConfigStream.is_open()) {
+        // Handle file opening error
+        return;
+    }
+
+    // Read map configuration
+    int gridSize, rows, cols;
+    std::string backgroundImageFile, mapLayoutFile;
+    mapConfigStream >> gridSize >> rows >> cols >> backgroundImageFile >> mapLayoutFile;
+    mapConfigStream.close();
+
+    // Load the background image
+    if (backgroundImageTexture.loadFromFile(backgroundImageFile)) {
+        backgroundImageSprite.setTexture(backgroundImageTexture);
+    }
+
+    // Initialize the grid and load the map from file
+    map = GridMap(gridSize, rows, cols, backgroundImageFile, mapLayoutFile);
+}
+
+void Game::loadEnemies(const std::string& enemyConfigFile) {
+    std::ifstream enemyConfigStream(enemyConfigFile);
+    if (!enemyConfigStream.is_open()) {
+        // Handle file opening error
+        return;
+    }
+
+    // Clear existing enemies
+    enemies.clear();
+
+    // Read enemy configurations
+    int hp, attack, xp;
+    float speed;
+    while (enemyConfigStream >> hp >> speed >> attack >> xp) {
+        enemies.push_back(Enemy(hp, speed, attack, xp, /* additional parameters if needed */));
+    }
+
+    enemyConfigStream.close();
+}
