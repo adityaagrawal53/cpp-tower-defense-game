@@ -29,11 +29,11 @@ void Game::run() {
     }
 }
 
-const std::vector<Tower>& Game::getTowers() const {
+std::vector<Tower>& Game::getTowers() {
     return towers;
 }
 
-const std::vector<Enemy>& Game::getEnemies() const {
+std::vector<Enemy>& Game::getEnemies() {
     return enemies;
 }
 

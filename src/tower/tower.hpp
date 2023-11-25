@@ -2,6 +2,7 @@
 #define TOWER_HPP
 
 #include <string>
+#include "../game/game.hpp"
 
 class Tower {
 public:
@@ -30,6 +31,9 @@ private:
     int damage;
     double range;
     int cost;
+
+    Game* game;
+
 };
 
 #endif
