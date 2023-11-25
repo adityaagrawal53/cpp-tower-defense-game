@@ -4,6 +4,9 @@
 #include <string>
 #include <math.h>           //Trigonometric functions
 
+#include "../tower/tower.hpp"
+#include "../game/game.hpp"
+
 /**
  * \brief class Checkpoint determines how the enemy should move
  * 
@@ -66,10 +69,8 @@ class Enemy {
 
     /**
      * \brief Attack a nearby tower
-     * 
-     * TODO: Define tower
     */
-    //void attack();
+    void attack(Tower* tower);
 
     /**
      * \brief Returns the Enemy's position as a float.
@@ -96,14 +97,15 @@ class Enemy {
     */
     std::queue<Checkpoint> getCheckpoints() const;
 
-  private:
+  protected:
     int HP_;
     float speed_;
     int ATK_;
     int coins_;
     float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
+
+    Game* game;
   
-  protected:
     bool dead = false;
 };

@@ -16,6 +16,10 @@ void Enemy::setHP(int amount) {
     }
 }
 
+void Enemy::attack(Tower* tower) {
+    tower->damageTower(ATK_);
+}
+
 float Enemy::getXPos() const {
     return xPos_;
 }
