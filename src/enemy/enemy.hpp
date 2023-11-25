@@ -40,9 +40,9 @@ class Enemy {
      * \param HP enemy health
      * \param speed enemy speed (how fast it moves between checkpoints)
      * \param ATK enemy attack (how much damage it can deal)
-     * \param XP enemy XP worth (how much XP enemy gives when destroyed)
+     * \param coins how many coins enemy gives when destroyed
     */
-    Enemy(int HP, float speed, int ATK, int XP, std::queue<Checkpoint> checkpoints);
+    Enemy(int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints);
 
     /**
      * \brief Virtual destroyer
@@ -100,7 +100,7 @@ class Enemy {
     int HP_;
     float speed_;
     int ATK_;
-    int XP_;
+    int coins_;
     float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
   

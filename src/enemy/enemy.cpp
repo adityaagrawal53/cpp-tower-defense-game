@@ -1,6 +1,6 @@
 #include "enemy.hpp"
 
-Enemy::Enemy(int HP, float speed, int ATK, int XP, std::queue<Checkpoint> checkpoints): HP_(HP), speed_(speed), ATK_(ATK), XP_(XP), checkpoints_(checkpoints) {
+Enemy::Enemy(int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints): HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), checkpoints_(checkpoints) {
     xPos_ = checkpoints.front().x;
     yPos_ = checkpoints.front().y;
 }
