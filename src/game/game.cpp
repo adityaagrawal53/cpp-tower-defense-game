@@ -133,7 +133,7 @@ void Game::spawnEnemiesForRound(int roundNumber) {
 }
 
 
-ame::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), clock(), playerHealth(100), playerScore(0), currentWave(1) {
+Game::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), clock(), playerHealth(100), playerScore(0), currentWave(1) {
     // Initialize game elements
     initialize();
 }
