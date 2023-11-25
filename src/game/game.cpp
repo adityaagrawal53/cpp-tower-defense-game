@@ -10,6 +10,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(50, 10
     playerHealth = 100;
     playerScore = 0;
     currentWave = 1;
+    playerMoney = 1000;
 
     // Initialize game elements
     initialize();
@@ -17,7 +18,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(50, 10
 
 void Game::initialize() {
     // Load the first round
-    loadRound(currentWave);
+    loadWave(currentWave);
 }
 
 void Game::run() {
@@ -46,26 +47,15 @@ void Game::update() {
     // Example: Update enemy positions
     for (auto& enemy : enemies) {
         enemy.move();
-
-        // Check for collisions with towers
-        for (auto& tower : towers) {
-            if (tower.inRange(enemy)) {
-                // Example: If the tower is in range, decrease enemy health
-                enemy.takeDamage(tower.getDamage());
-            }
-        }
-
-        // Check for collisions with the end of the path
-        if (map.isEnemyAtEnd(enemy)) {
-            // Example: If enemy reaches the end, decrease player health
-            playerHealth -= enemy.getAttack();
-        }
     }
+
+    handleTowerEnemyInteractions();
+
 
     // Check if the round is completed
     if (enemies.empty()) {
         currentWave++;
-        loadRound(currentWave);
+        loadWave(currentWave);
     }
 
     // Check if the player has lost
@@ -98,7 +88,7 @@ void Game::render() {
     window.display();
 }
 
-void Game::loadRound(int roundNumber) {
+void Game::loadWave(int roundNumber) {
     // Load enemies and setup for the given round
     spawnEnemiesForRound(roundNumber);
 }
@@ -193,4 +183,18 @@ void Game::loadEnemies(const std::string& enemyConfigFile) {
     }
 
     enemyConfigStream.close();
+}
+
+
+void Game::handleTowerEnemyInteractions() {
+    // Iterate through towers and enemies and handle interactions
+    for (auto& tower : towers) {
+        for (auto& enemy : enemies) {
+            // Check if the enemy is in range of the tower
+            if (tower.inRange(enemy)) {
+                // If the tower is in range, decrease enemy health
+                enemy.takeDamage(tower.getDamage());
+            }
+        }
+    }
 }
