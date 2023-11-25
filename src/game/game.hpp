@@ -18,6 +18,9 @@ public:
     // Main game loop
     void run();
 
+    const std::vector<Tower>& getTowers() const;
+    const std::vector<Enemy>& getEnemies() const;
+
 private:
     sf::RenderWindow window;
     GridMap map;
@@ -30,6 +33,9 @@ private:
     int playerScore;
     int currentWave;
     int playerMoney;
+
+    
+
 
     // Methods to handle game logic
     void handleInput();

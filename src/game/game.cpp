@@ -29,6 +29,14 @@ void Game::run() {
     }
 }
 
+const std::vector<Tower>& Game::getTowers() const {
+    return towers;
+}
+
+const std::vector<Enemy>& Game::getEnemies() const {
+    return enemies;
+}
+
 void Game::handleInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
