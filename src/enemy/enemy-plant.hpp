@@ -4,5 +4,7 @@
 
 class PlantEnemy : public Enemy {
   public:
-    PlantEnemy(std::queue<Checkpoint> checkpoints);
+    PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints);
+
+    virtual void attack();
 };

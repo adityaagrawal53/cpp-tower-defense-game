@@ -5,7 +5,7 @@
 
 class TreeEnemy : public Enemy {
   public:
-    TreeEnemy(std::queue<Checkpoint> checkpoints);
+    TreeEnemy(Game* game, std::queue<Checkpoint> checkpoints);
 
     /**
      * \brief When killed, create 3 PlantEnemy enemies.

@@ -4,7 +4,6 @@
 #include <string>
 #include <math.h>           //Trigonometric functions
 
-#include "../tower/tower.hpp"
 #include "../game/game.hpp"
 
 /**
@@ -40,12 +39,13 @@ class Enemy {
     /**
      * \brief Constructs a new Enemy object
      * 
+     * \param game what game it is in (to gain access to other Enemys and Towers)
      * \param HP enemy health
      * \param speed enemy speed (how fast it moves between checkpoints)
      * \param ATK enemy attack (how much damage it can deal)
      * \param coins how many coins enemy gives when destroyed
     */
-    Enemy(int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints);
+    Enemy(Game* game, int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints);
 
     /**
      * \brief Virtual destroyer
@@ -68,9 +68,9 @@ class Enemy {
     void setHP(int amount);
 
     /**
-     * \brief Attack a nearby tower
+     * \brief Attack a nearby tower(s) (does nothing by default)
     */
-    void attack(Tower* tower);
+    virtual void attack();
 
     /**
      * \brief Returns the Enemy's position as a float.
@@ -105,7 +105,7 @@ class Enemy {
     float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
 
-    Game* game;
+    Game* game_;
   
     bool dead = false;
 };
