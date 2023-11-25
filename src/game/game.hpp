@@ -21,6 +21,18 @@ public:
     const std::vector<Tower>& getTowers() const;
     const std::vector<Enemy>& getEnemies() const;
 
+    int getPlayerHealth() const;
+    void setPlayerHealth(int health);
+
+    int getPlayerScore() const;
+    void setPlayerScore(int score);
+
+    int getCurrentWave() const;
+    void setCurrentWave(int wave);
+
+    int getPlayerMoney() const;
+    void setPlayerMoney(int money);
+
 private:
     sf::RenderWindow window;
     GridMap map;

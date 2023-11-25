@@ -206,3 +206,35 @@ void Game::handleTowerEnemyInteractions() {
         }
     }
 }
+
+int Game::getPlayerHealth() const {
+    return playerHealth;
+}
+
+void Game::setPlayerHealth(int health) {
+    playerHealth = health;
+}
+
+int Game::getPlayerScore() const {
+    return playerScore;
+}
+
+void Game::setPlayerScore(int score) {
+    playerScore = score;
+}
+
+int Game::getCurrentWave() const {
+    return currentWave;
+}
+
+void Game::setCurrentWave(int wave) {
+    currentWave = wave;
+}
+
+int Game::getPlayerMoney() const {
+    return playerMoney;
+}
+
+void Game::setPlayerMoney(int money) {
+    playerMoney = money;
+}
