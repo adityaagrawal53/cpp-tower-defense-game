@@ -40,4 +40,6 @@ private:
     void loadWave(int waveNumber);
     void loadMap(const std::string& mapConfigFile);
     void loadEnemies(const std::string& enemyConfigFile);
+
+    void handleTowerEnemyInteractions();
 };
