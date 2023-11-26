@@ -1,8 +1,14 @@
 #include "enemy.hpp"
 
-Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), checkpoints_(checkpoints) {
-    xPos_ = checkpoints.front().x;
-    yPos_ = checkpoints.front().y;
+Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<Checkpoint> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
+    //xPos_ = checkpoints.front().x;
+    //yPos_ = checkpoints.front().y;
+    setPosition(checkpoints.front().x, checkpoints.front().y);
+}
+
+void Enemy::setPosition(float x, float y) {
+    xPos_ = x;
+    yPos_ = y;
 }
 
 int Enemy::getHP() const {
@@ -74,6 +80,12 @@ void Enemy::move() {
         if(xDist == 0 && yDist == 0) {
             checkpoints_.pop();
         }
+    }
+}
+
+std::vector<Tower>& Enemy::getTowersInRange() {
+    for(auto t : game_->getTowers()) {
+        //get position of tower
     }
 }
 
