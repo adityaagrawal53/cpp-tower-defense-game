@@ -4,9 +4,14 @@
 #include <string>
 #include "../game/game.hpp"
 
+struct TowerPos {
+    double x;
+    double y;
+};
+
 class Tower {
 public:
-    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime);
+    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
 
     // Method to display tower stats
     void printTowerInfo() const;
@@ -33,7 +38,7 @@ private:
     int cost;
 
     Game* game;
-
+    TowerPos position;
 };
 
 #endif
