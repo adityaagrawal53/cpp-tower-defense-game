@@ -16,6 +16,10 @@ public:
     // Method to display tower stats
     void printTowerInfo() const;
 
+    // Methods to set and get tower position
+    TowerPos getPosition() const;
+    void setPosition(TowerPos position);
+
     // Methods to set tower stats
     std::string getName() const;
     void setName(std::string name);
