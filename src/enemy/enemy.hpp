@@ -78,7 +78,7 @@ class Enemy {
     void setHP(int amount);
 
     /**
-     * \brief Attack a nearby tower(s) (does nothing by default)
+     * \brief Attack a nearby tower(s) (closest Tower by default)
     */
     virtual void attack();
 
@@ -100,7 +100,7 @@ class Enemy {
      * 
      * \return Vector of Towers.
     */
-    std::vector<Tower>& getTowersInRange();
+    std::vector<Tower> getTowersInRange();
 
     /**
      * \brief Do something when the enemy dies (sets `dead` to true by default).

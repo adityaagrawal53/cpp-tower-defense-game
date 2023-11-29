@@ -23,7 +23,8 @@ void Enemy::setHP(int amount) {
 }
 
 void Enemy::attack() {
-    //Do nothing
+    Tower tar = getTowersInRange().front();
+    tar.setHealth(tar.getHealth() - ATK_);
 }
 
 float Enemy::getXPos() const {
@@ -83,10 +84,26 @@ void Enemy::move() {
     }
 }
 
-std::vector<Tower>& Enemy::getTowersInRange() {
+std::vector<Tower> Enemy::getTowersInRange() {
+    std::vector<Tower> inRange = std::vector<Tower>();
     for(auto t : game_->getTowers()) {
         //get position of tower
+        double x = t.getPosition().x;
+        double y = t.getPosition().y;
+        if(abs(x - xPos_) <= range_ && abs(y - yPos_) <= range_) {
+            inRange.push_back(t);
+        }
     }
+    //Sorting by distance
+    float xp = xPos_;
+    float yp = yPos_;
+    std::sort(inRange.begin(), inRange.end(),
+        [xp, yp](Tower& t1, Tower& t2) {
+            double d1 = sqrt(pow(t1.getPosition().x - xp, 2) + pow(t1.getPosition().y - yp, 2));
+            double d2 = sqrt(pow(t2.getPosition().x - xp, 2) + pow(t2.getPosition().y - yp, 2));
+            return d1 < d2;
+        });
+    return inRange;
 }
 
 void Enemy::die() {
