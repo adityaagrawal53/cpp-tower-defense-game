@@ -22,11 +22,6 @@ void Enemy::setHP(int amount) {
     }
 }
 
-void Enemy::attack() {
-    Tower tar = getTowersInRange().front();
-    tar.setHealth(tar.getHealth() - ATK_);
-}
-
 float Enemy::getXPos() const {
     return xPos_;
 }
@@ -104,6 +99,11 @@ std::vector<Tower> Enemy::getTowersInRange() {
             return d1 < d2;
         });
     return inRange;
+}
+
+void Enemy::attack() {
+    Tower tar = getTowersInRange().front();
+    tar.setHealth(tar.getHealth() - ATK_);
 }
 
 void Enemy::die() {

@@ -78,11 +78,6 @@ class Enemy {
     void setHP(int amount);
 
     /**
-     * \brief Attack a nearby tower(s) (closest Tower by default)
-    */
-    virtual void attack();
-
-    /**
      * \brief Returns the Enemy's position as a float.
      * 
      * \return Enemy's position as a float.
@@ -101,6 +96,11 @@ class Enemy {
      * \return Vector of Towers.
     */
     std::vector<Tower> getTowersInRange();
+
+    /**
+     * \brief Attack a nearby tower(s) (closest Tower by default)
+    */
+    virtual void attack();
 
     /**
      * \brief Do something when the enemy dies (sets `dead` to true by default).
