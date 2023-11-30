@@ -1,7 +1,7 @@
 #include "tower.hpp"
 #include <iostream>
 
-Tower::Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): name(name), damage(damage), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
+Tower::Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
 void Tower::printTowerInfo() const {
     std::cout << "Tower Name: " << getName() << std::endl;

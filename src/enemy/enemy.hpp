@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMY_HPP
+#define ENEMY_HPP
 
 #include <queue>
 #include <vector>
@@ -6,6 +7,7 @@
 #include <math.h>           //Trigonometric functions
 
 #include "../game/game.hpp"
+#include "../tower/tower.hpp"
 
 /**
  * \brief class Checkpoint determines how the enemy should move
@@ -127,3 +129,5 @@ class Enemy {
   
     bool dead = false;
 };
+
+#endif
