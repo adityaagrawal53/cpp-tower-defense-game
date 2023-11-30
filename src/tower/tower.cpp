@@ -36,6 +36,10 @@ void Tower::setHealth(int hp) {
     this->hp = hp;
 }
 
+void Tower::damageTower(int hp) { 
+    this->hp -= hp;
+}
+
 double Tower::getRange() const {
     return range;
 }
