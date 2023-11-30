@@ -6,8 +6,11 @@
 #include <string>
 #include <math.h>           //Trigonometric functions
 
-#include "../game/game.hpp"
-#include "../tower/tower.hpp"
+//Forward declaration to avoid circular dependency
+class Game;
+
+class Tower;
+
 
 /**
  * \brief class Checkpoint determines how the enemy should move
