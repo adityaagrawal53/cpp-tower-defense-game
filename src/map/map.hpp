@@ -4,13 +4,13 @@
 #include <string>
 
 class GridMap {
-public:
+  public:
     GridMap(int gridSize, int rows, int cols, const std::vector<std::string>& backgroundImageFiles, const std::string& mapFile, const std::vector<std::string>& towerImageFiles);
 
     void draw(sf::RenderWindow& window);
     void handleMouseInput(sf::Event& event);
 
-private:
+  private:
     int gridSize;
     int rows;
     int cols;

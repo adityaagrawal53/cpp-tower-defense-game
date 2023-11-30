@@ -11,6 +11,8 @@ class Game;
 
 class Tower;
 
+#include "../game/game.hpp"
+#include "../tower/tower.hpp"
 
 /**
  * \brief class Checkpoint determines how the enemy should move
