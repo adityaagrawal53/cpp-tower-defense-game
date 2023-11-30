@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMY_PLANT_HPP
+#define ENEMY_PLANT_HPP
 
 #include "enemy.hpp"
 
@@ -15,3 +16,5 @@ class PlantEnemy : public Enemy {
     */
     PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints, float x, float y);
 };
+
+#endif

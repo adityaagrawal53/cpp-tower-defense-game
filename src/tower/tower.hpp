@@ -34,7 +34,7 @@ public:
     void setCost(int cost);
     int getDamageOverTime() const;
     void setDamageOverTime(int damageOverTime);
-    void Tower::damageTower(int hp);
+    void damageTower(int hp);
 
 private:
     std::string name;

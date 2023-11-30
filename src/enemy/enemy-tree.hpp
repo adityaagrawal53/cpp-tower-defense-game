@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMY_TREE_HPP
+#define ENEMY_TREE_HPP
 
 #include "enemy.hpp"
 #include "enemy-plant.hpp"
@@ -12,3 +13,5 @@ class TreeEnemy : public Enemy {
     */
     virtual void die();
 };
+
+#endif

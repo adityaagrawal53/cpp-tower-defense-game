@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENEMY_FIRE_HPP
+#define ENEMY_FIRE_HPP
 
 #include "enemy.hpp"
 
@@ -11,3 +12,5 @@ class FireEnemy : public Enemy {
     */
     void damageOverTime(Tower* tower);
 };
+
+#endif

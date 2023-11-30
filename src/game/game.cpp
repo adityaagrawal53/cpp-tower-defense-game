@@ -193,20 +193,6 @@ void Game::loadEnemies(const std::string& enemyConfigFile) {
     enemyConfigStream.close();
 }
 
-
-void Game::handleTowerEnemyInteractions() {
-    // Iterate through towers and enemies and handle interactions
-    for (auto& tower : towers) {
-        for (auto& enemy : enemies) {
-            // Check if the enemy is in range of the tower
-            if (tower.inRange(enemy)) {
-                // If the tower is in range, decrease enemy health
-                enemy.takeDamage(tower.getDamage());
-            }
-        }
-    }
-}
-
 int Game::getPlayerHealth() const {
     return playerHealth;
 }
