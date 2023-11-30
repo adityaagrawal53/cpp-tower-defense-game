@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../game/game.cpp"
+#include "../enemy/enemy.cpp"
 
 class Tower {
 public:
