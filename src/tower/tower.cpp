@@ -1,15 +1,24 @@
 #include "tower.hpp"
 #include <iostream>
 
-Tower::Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime): name(name), damage(damage), range(range), cost(cost), damageOverTime(damageOverTime) {}
+Tower::Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): name(name), damage(damage), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
 void Tower::printTowerInfo() const {
-    std::cout << "Tower Name: " << name << std::endl;
-    std::cout << "Damage: " << damage << std::endl;
-    std::cout << "Health: " << hp << std::endl
-    std::cout << "Range: " << range << std::endl;
-    std::cout << "Cost: " << cost << std::endl;
-    std::cout << "Damage Over Time: " << damageOverTime << std::endl;
+    std::cout << "Tower Name: " << getName() << std::endl;
+    std::cout << "Damage: " << getDamage() << std::endl;
+    std::cout << "Health: " << getHealth() << std::endl;
+    std::cout << "Range: " << getRange() << std::endl;
+    std::cout << "Cost: " << getCost() << std::endl;
+    std::cout << "Damage Over Time: " << getDamageOverTime() << std::endl;
+    std::cout << "Position: (" << getPosition().x << ", " << getPosition().y << ")" << std::endl;
+}
+
+TowerPos Tower::getPosition() const {
+    return position;
+}
+
+void Tower::setPosition(TowerPos position) {
+    this->position = position;
 }
 
 std::string Tower::getName() const {

@@ -1,8 +1,14 @@
 #include "enemy.hpp"
 
-Enemy::Enemy(int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints): HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), checkpoints_(checkpoints) {
-    xPos_ = checkpoints.front().x;
-    yPos_ = checkpoints.front().y;
+Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<Checkpoint> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
+    //xPos_ = checkpoints.front().x;
+    //yPos_ = checkpoints.front().y;
+    setPosition(checkpoints.front().x, checkpoints.front().y);
+}
+
+void Enemy::setPosition(float x, float y) {
+    xPos_ = x;
+    yPos_ = y;
 }
 
 int Enemy::getHP() const {
@@ -14,10 +20,6 @@ void Enemy::setHP(int amount) {
     if(HP_ <= 0) {
         die();
     }
-}
-
-void Enemy::attack(Tower* tower) {
-    tower->damageTower(ATK_);
 }
 
 float Enemy::getXPos() const {
@@ -75,6 +77,33 @@ void Enemy::move() {
             checkpoints_.pop();
         }
     }
+}
+
+std::vector<Tower> Enemy::getTowersInRange() {
+    std::vector<Tower> inRange = std::vector<Tower>();
+    for(auto t : game_->getTowers()) {
+        //get position of tower
+        double x = t.getPosition().x;
+        double y = t.getPosition().y;
+        if(abs(x - xPos_) <= range_ && abs(y - yPos_) <= range_) {
+            inRange.push_back(t);
+        }
+    }
+    //Sorting by distance
+    float xp = xPos_;
+    float yp = yPos_;
+    std::sort(inRange.begin(), inRange.end(),
+        [xp, yp](Tower& t1, Tower& t2) {
+            double d1 = sqrt(pow(t1.getPosition().x - xp, 2) + pow(t1.getPosition().y - yp, 2));
+            double d2 = sqrt(pow(t2.getPosition().x - xp, 2) + pow(t2.getPosition().y - yp, 2));
+            return d1 < d2;
+        });
+    return inRange;
+}
+
+void Enemy::attack() {
+    Tower tar = getTowersInRange().front();
+    tar.setHealth(tar.getHealth() - ATK_);
 }
 
 void Enemy::die() {

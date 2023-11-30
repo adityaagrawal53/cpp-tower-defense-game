@@ -1,10 +1,10 @@
 #pragma once
 
 #include <queue>
+#include <vector>
 #include <string>
 #include <math.h>           //Trigonometric functions
 
-#include "../tower/tower.hpp"
 #include "../game/game.hpp"
 
 /**
@@ -40,17 +40,27 @@ class Enemy {
     /**
      * \brief Constructs a new Enemy object
      * 
-     * \param HP enemy health
+     * \param game  what game it is in (to gain access to other Enemys and Towers)
+     * \param HP    enemy health
      * \param speed enemy speed (how fast it moves between checkpoints)
-     * \param ATK enemy attack (how much damage it can deal)
+     * \param ATK   enemy attack (how much damage it can deal)
      * \param coins how many coins enemy gives when destroyed
+     * \param range detection radius of Enemy
     */
-    Enemy(int HP, float speed, int ATK, int coins, std::queue<Checkpoint> checkpoints);
+    Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<Checkpoint> checkpoints);
 
     /**
      * \brief Virtual destroyer
     */
     //virtual ~Enemy() {};
+
+    /**
+     * \brief Sets position of Enemy to (x, y)
+     * 
+     * \param x x-coordinate of Enemy
+     * \param y y-coordinate of Enemy
+    */
+    void setPosition(float x, float y);
 
     /**
      * \brief Returns the Enemy's HP as an integer.
@@ -68,11 +78,6 @@ class Enemy {
     void setHP(int amount);
 
     /**
-     * \brief Attack a nearby tower
-    */
-    void attack(Tower* tower);
-
-    /**
      * \brief Returns the Enemy's position as a float.
      * 
      * \return Enemy's position as a float.
@@ -84,6 +89,18 @@ class Enemy {
      * \brief Moves Enemy.
     */
     void move();
+    
+    /**
+     * \brief Returns a vector of Towers that are in Enemy range.
+     * 
+     * \return Vector of Towers.
+    */
+    std::vector<Tower> getTowersInRange();
+
+    /**
+     * \brief Attack a nearby tower(s) (closest Tower by default)
+    */
+    virtual void attack();
 
     /**
      * \brief Do something when the enemy dies (sets `dead` to true by default).
@@ -102,10 +119,11 @@ class Enemy {
     float speed_;
     int ATK_;
     int coins_;
+    double range_;
     float xPos_, yPos_;
     std::queue<Checkpoint> checkpoints_;
 
-    Game* game;
+    Game* game_;
   
     bool dead = false;
 };

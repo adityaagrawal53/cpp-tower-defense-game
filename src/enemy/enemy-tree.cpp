@@ -1,12 +1,11 @@
 #include "enemy-tree.hpp"
 
-TreeEnemy::TreeEnemy(std::queue<Checkpoint> checkpoints): Enemy(100, 0.3, 5, 30, checkpoints) { }
+TreeEnemy::TreeEnemy(Game* game, std::queue<Checkpoint> checkpoints): Enemy(game, 100, 0.3, 5, 30, 1, checkpoints) { }
 
 void TreeEnemy::die() {
-    /*
-    PlantEnemy(getCheckpoints());
-    PlantEnemy(getCheckpoints());
-    PlantEnemy(getCheckpoints());
-    */
+    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
+    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
+    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
+    
     dead = true;
 }
