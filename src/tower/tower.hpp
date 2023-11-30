@@ -2,23 +2,14 @@
 #define TOWER_HPP
 
 #include <string>
-#include "../game/game.hpp"
-
-struct TowerPos {
-    double x;
-    double y;
-};
+#include "../game/game.cpp"
 
 class Tower {
 public:
-    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
+    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime);
 
     // Method to display tower stats
     void printTowerInfo() const;
-
-    // Methods to set and get tower position
-    TowerPos getPosition() const;
-    void setPosition(TowerPos position);
 
     // Methods to set tower stats
     std::string getName() const;
@@ -33,6 +24,7 @@ public:
     void setCost(int cost);
     int getDamageOverTime() const;
     void setDamageOverTime(int damageOverTime);
+    void Tower::damageTower(int hp);
 
 private:
     std::string name;
@@ -41,7 +33,7 @@ private:
     int cost;
 
     Game* game;
-    TowerPos position;
+
 };
 
 #endif
