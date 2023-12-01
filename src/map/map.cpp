@@ -57,11 +57,11 @@ void GridMap::draw(sf::RenderWindow& window) {
     // Draw the grid cells
     for (int i = 0; i < mapData.size(); ++i) {
         for (int j = 0; j < mapData[i].size(); ++j) {
-            if (mapData[i][j] == 1) {
-                sf::RectangleShape cell(sf::Vector2f(gridSize, gridSize));
-                cell.setPosition(j * gridSize, i * gridSize);
-                cell.setFillColor(sf::Color::Green);  // Adjust color as needed
-                window.draw(cell);
+            int imageIndex = mapData[i][j];
+            if (imageIndex >= 0 && imageIndex < backgroundImageTextures.size()) {
+                sf::Sprite cellSprite(backgroundImageTextures[imageIndex]);
+                cellSprite.setPosition(j * gridSize, i * gridSize);
+                window.draw(cellSprite);
             }
         }
     }
@@ -74,8 +74,9 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
 
         // Check if the indices are within the valid range
         if (rowIndex >= 0 && rowIndex < mapData.size() && columnIndex >= 0 && columnIndex < mapData[0].size()) {
-            // Toggle the value (0 to 1 or 1 to 0)
-            mapData[rowIndex][columnIndex] = 1 - mapData[rowIndex][columnIndex];
+            // Change the value to represent a different image index
+            // For example, set it to 2 for the third image in backgroundImageTextures
+            mapData[rowIndex][columnIndex] = 2;
         }
     }
 }
