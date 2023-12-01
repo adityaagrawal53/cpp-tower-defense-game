@@ -2,6 +2,9 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#pragma once
+
+
 
 class GridMap {
   public:
