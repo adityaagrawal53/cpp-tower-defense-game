@@ -18,12 +18,10 @@ class Tower;
  * \brief class Checkpoint determines how the enemy should move
  * 
  * \param x, y coordinates of checkpoint
- * \param t how long should Enemy stay at checkpoint
 */
 struct Checkpoint {
     double x;
     double y;
-    int t;              //TODO: implement waiting mechanism
 };
 
 /**
