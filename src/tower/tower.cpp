@@ -1,7 +1,7 @@
 #include "tower.hpp"
 #include <iostream>
 
-Tower::Tower(Game* game, td::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): game(game) name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
+Tower::Tower(Game* game, std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): game(game), name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
 void Tower::printTowerInfo() const {
     std::cout << "Tower Name: " << getName() << std::endl;
@@ -43,10 +43,6 @@ int Tower::getHealth() const {
 
 void Tower::setHealth(int hp) {
     this->hp = hp;
-}
-
-void Tower::damageTower(int hp) { 
-    this->hp -= hp;
 }
 
 double Tower::getRange() const {

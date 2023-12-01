@@ -115,6 +115,14 @@ class Enemy {
     virtual void die();
 
     /**
+     * \brief Checks if Enemy is dead.
+     * 
+     * \return true if Enemy is dead
+     *         false otherwise
+    */
+    bool isDead() const;
+
+    /**
      * \brief Returns the Enemy's current Checkpoint list.
      * 
      * \return Enemy's Checkpoint list.

@@ -110,6 +110,10 @@ void Enemy::die() {
     dead = true;
 }
 
+bool Enemy::isDead() const {
+    return dead;
+}
+
 std::queue<Checkpoint> Enemy::getCheckpoints() const {
     return checkpoints_;
 }

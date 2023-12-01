@@ -19,7 +19,7 @@ struct TowerPos {
 
 class Tower {
 public:
-    Tower(Game* game, td::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
+    Tower(Game* game, std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
 
     // Method to display tower stats
     void printTowerInfo() const;
