@@ -131,10 +131,6 @@ void Game::spawnEnemiesForRound(int roundNumber) {
 }
 
 
-Game::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), clock(), playerHealth(100), playerScore(0), currentWave(1) {
-    // Initialize game elements
-    initialize();
-}
 
 void Game::initialize() {
     // Load the first wave
