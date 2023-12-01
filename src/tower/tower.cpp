@@ -1,7 +1,7 @@
 #include "tower.hpp"
 #include <iostream>
 
-Tower::Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
+Tower::Tower(Game* game, td::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): game(game) name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
 void Tower::printTowerInfo() const {
     std::cout << "Tower Name: " << getName() << std::endl;
@@ -71,4 +71,32 @@ int Tower::getDamageOverTime() const {
 
 void Tower::setDamageOverTime(int damageOverTime) {
     this->damageOverTime = damageOverTime;
+}
+
+std::vector<Enemy> Tower::getEnemiesInRange() {
+    std::vector<Enemy> inRange = std::vector<Enemy>();
+    for(auto t : game->getEnemies()) {
+        //get position of enemy
+        double x = t.getYPos();
+        double y = t.getXPos();
+        if(abs(x - position.x) <= range && abs(y - position.y) <= range) {
+            inRange.push_back(t);
+        }
+    }
+
+    //Sorting by distance
+    double xp = position.x;
+    double yp = position.y;
+    std::sort(inRange.begin(), inRange.end(),
+        [xp, yp](Enemy& t1, Enemy& t2) {
+            double d1 = sqrt(pow(t1.getXPos() - xp, 2) + pow(t1.getYPos() - yp, 2));
+            double d2 = sqrt(pow(t2.getXPos() - xp, 2) + pow(t2.getYPos() - yp, 2));
+            return d1 < d2;
+        });
+    return inRange;
+}
+
+void Tower::attack() {
+    Enemy tar = getEnemiesInRange().front();
+    tar.setHP(tar.getHP() - damage);
 }
