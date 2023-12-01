@@ -1,29 +1,21 @@
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include <fstream>
-#include <string>
 #pragma once
 
-
+#include <SFML/Graphics.hpp>
+#include <vector>
 
 class GridMap {
-  public:
-    GridMap(int gridSize, int rows, int cols, const std::vector<std::string>& backgroundImageFiles, const std::string& mapFile, const std::vector<std::string>& towerImageFiles);
-
+public:
+    GridMap(int gridSize, int windowSize, const std::string& mapFile, const std::vector<std::string>& backgroundImageFiles, int selectedBackgroundIndex);
     void draw(sf::RenderWindow& window);
-    void handleMouseInput(sf::Event& event);
+    void handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
 
-  private:
+private:
     int gridSize;
-    int rows;
-    int cols;
-    std::vector<std::vector<bool>> grid;
-    std::vector<sf::Texture> backgroundTextures;
-    sf::Sprite backgroundImageSprite;
-    std::vector<sf::Texture> towerTextures;
-    sf::Sprite towerSprite;
+    int windowSize;
+    std::vector<std::vector<int>> mapData;
+    std::vector<sf::Texture> backgroundImageTextures;
+    sf::Sprite backgroundImage;
 
-    void loadMapFromFile(const std::string& mapFile);
-    void updateGridImage(int x, int y);
-    void updateBackgroundImage();
+    void loadMap(const std::string& mapFile);
+    void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
 };

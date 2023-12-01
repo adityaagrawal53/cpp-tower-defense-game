@@ -170,7 +170,7 @@ void Game::loadMap(const std::string& mapConfigFile) {
     }
 
     // Initialize the grid and load the map from file
-    map = GridMap(gridSize, rows, cols, backgroundImageFile, mapLayoutFile);
+    map = GridMap(gridSize, rows, cols, backgroundImageFile, mapLayoutFile, towerImage);
 }
 
 void Game::loadEnemies(const std::string& enemyConfigFile) {

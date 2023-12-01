@@ -1,106 +1,81 @@
 #include "map.hpp"
+#include <fstream>
+#include <iostream>
 
-GridMap::GridMap(int gridSize, int rows, int cols, const std::vector<std::string>& backgroundImageFiles, const std::string& mapFile, const std::vector<std::string>& towerImageFiles)
-    : gridSize(gridSize), rows(rows), cols(cols) {
-    
-    // Load the background images
-    for (const auto& backgroundImageFile : backgroundImageFiles) {
-        sf::Texture backgroundTexture;
-        if (backgroundTexture.loadFromFile(backgroundImageFile)) {
-            backgroundTextures.push_back(backgroundTexture);
-        }
+GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const std::vector<std::string>& backgroundImageFiles, int selectedBackgroundIndex)
+    : gridSize(gridSize), windowSize(windowSize) {
+    loadMap(mapFile);
+    loadBackgrounds(backgroundImageFiles);
+
+    if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < backgroundImageTextures.size()) {
+        backgroundImage.setTexture(backgroundImageTextures[selectedBackgroundIndex]);
+    } else {
+        std::cerr << "Invalid selected background index. Defaulting to the first background." << std::endl;
+        backgroundImage.setTexture(backgroundImageTextures[0]);
     }
-
-    // Load the tower images
-    for (const auto& towerImageFile : towerImageFiles) {
-        sf::Texture towerTexture;
-        if (towerTexture.loadFromFile(towerImageFile)) {
-            towerTextures.push_back(towerTexture);
-        }
-    }
-
-    // Initialize the grid and load the map from file
-    grid.resize(rows, std::vector<bool>(cols, false));
-    loadMapFromFile(mapFile);
-    updateBackgroundImage();
 }
 
-void GridMap::loadMapFromFile(const std::string& mapFile) {
+void GridMap::loadMap(const std::string& mapFile) {
     std::ifstream file(mapFile);
+
     if (!file.is_open()) {
-        // Handle file opening error
+        std::cerr << "Error opening map file: " << mapFile << std::endl;
         return;
     }
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            int value;
-            if (file >> value) {
-                grid[i][j] = (value == 1);
-            } else {
-                // Handle reading error
+    int value;
+    while (file >> value) {
+        std::vector<int> row;
+        for (int i = 0; i < windowSize / gridSize; ++i) {
+            row.push_back(value);
+            if (!(file >> value)) {
+                std::cerr << "Error reading map file: " << mapFile << std::endl;
                 return;
             }
         }
+        mapData.push_back(row);
     }
 
     file.close();
 }
 
-void GridMap::updateGridImage(int x, int y) {
-    // Cycle through tower images
-    static size_t currentTowerIndex = 0;
-    currentTowerIndex = (currentTowerIndex + 1) % towerTextures.size();
-
-    // Set the current tower image
-    towerSprite.setTexture(towerTextures[currentTowerIndex]);
-    towerSprite.setScale(static_cast<float>(gridSize) / towerTextures[currentTowerIndex].getSize().x,
-                        static_cast<float>(gridSize) / towerTextures[currentTowerIndex].getSize().y);
-
-    // Update the grid value (optional)
-    grid[y][x] = !grid[y][x];
-}
-
-void GridMap::updateBackgroundImage() {
-    // Cycle through background images
-    static size_t currentBackgroundIndex = 0;
-    currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundTextures.size();
-
-    // Set the current background image
-    backgroundImageSprite.setTexture(backgroundTextures[currentBackgroundIndex]);
-    backgroundImageSprite.setScale(static_cast<float>(gridSize * cols) / backgroundTextures[currentBackgroundIndex].getSize().x,
-                                   static_cast<float>(gridSize * rows) / backgroundTextures[currentBackgroundIndex].getSize().y);
+void GridMap::loadBackgrounds(const std::vector<std::string>& backgroundImageFiles) {
+    for (const auto& file : backgroundImageFiles) {
+        sf::Texture texture;
+        if (texture.loadFromFile(file)) {
+            backgroundImageTextures.push_back(texture);
+        } else {
+            std::cerr << "Error loading background image: " << file << std::endl;
+        }
+    }
 }
 
 void GridMap::draw(sf::RenderWindow& window) {
-    // Draw the background image
-    window.draw(backgroundImageSprite);
+    // Draw the background
+    window.draw(backgroundImage);
 
-    // Draw the grid on top of the background
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            sf::RectangleShape cell(sf::Vector2f(gridSize, gridSize));
-            cell.setPosition(j * gridSize, i * gridSize);
-            cell.setOutlineThickness(1);
-            cell.setOutlineColor(sf::Color::Black);
-            cell.setFillColor(grid[i][j] ? sf::Color::Green : sf::Color::White);
-            window.draw(cell);
-
-            // Draw the tower image on top of selected grid cells
-            if (grid[i][j]) {
-                towerSprite.setPosition(j * gridSize, i * gridSize);
-                window.draw(towerSprite);
+    // Draw the grid cells
+    for (int i = 0; i < mapData.size(); ++i) {
+        for (int j = 0; j < mapData[i].size(); ++j) {
+            if (mapData[i][j] == 1) {
+                sf::RectangleShape cell(sf::Vector2f(gridSize, gridSize));
+                cell.setPosition(j * gridSize, i * gridSize);
+                cell.setFillColor(sf::Color::Green);  // Adjust color as needed
+                window.draw(cell);
             }
         }
     }
 }
 
-void GridMap::handleMouseInput(sf::Event& event) {
-    if (event.type == sf::Event::MouseButtonPressed) {
-        int x = event.mouseButton.x / gridSize;
-        int y = event.mouseButton.y / gridSize;
-        if (x >= 0 && x < cols && y >= 0 && y < rows && grid[y][x]) {
-            updateGridImage(x, y);
+void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
+    if (mouseEvent.button == sf::Mouse::Left) {
+        int columnIndex = mouseEvent.x / gridSize;
+        int rowIndex = mouseEvent.y / gridSize;
+
+        // Check if the indices are within the valid range
+        if (rowIndex >= 0 && rowIndex < mapData.size() && columnIndex >= 0 && columnIndex < mapData[0].size()) {
+            // Toggle the value (0 to 1 or 1 to 0)
+            mapData[rowIndex][columnIndex] = 1 - mapData[rowIndex][columnIndex];
         }
     }
 }
