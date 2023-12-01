@@ -160,7 +160,7 @@ void Game::loadMap(const std::string& mapConfigFile) {
 
     // Read map configuration
     int gridSize, rows, cols;
-    std::string backgroundImageFile, mapLayoutFile;
+    std::string backgroundImageFile, mapLayoutFile, towerImage;
     mapConfigStream >> gridSize >> rows >> cols >> backgroundImageFile >> mapLayoutFile;
     mapConfigStream.close();
 
