@@ -1,6 +1,13 @@
 #ifndef TOWER_HPP
 #define TOWER_HPP
 
+
+class Game;
+
+class Tower;
+
+
+
 #include <string>
 #include "../game/game.hpp"
 #include "../enemy/enemy.hpp"
@@ -12,7 +19,7 @@ struct TowerPos {
 
 class Tower {
 public:
-    Tower(std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
+    Tower(Game* game, td::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position);
 
     // Method to display tower stats
     void printTowerInfo() const;
@@ -34,7 +41,10 @@ public:
     void setCost(int cost);
     int getDamageOverTime() const;
     void setDamageOverTime(int damageOverTime);
-    void damageTower(int hp);
+
+    //Attack implementation
+    std::vector<Enemy> getEnemiesInRange();
+    virtual void attack();
 
 private:
     std::string name;
