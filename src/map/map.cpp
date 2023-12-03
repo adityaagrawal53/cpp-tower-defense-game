@@ -23,11 +23,15 @@ void GridMap::loadMap(const std::string& mapFile) {
         return;
     }
 
-    int value;
+    std::string value;
     while (file >> value) {
         std::vector<int> row;
         for (int i = 0; i < windowSize / gridSize; ++i) {
-            row.push_back(value);
+            if (value.length() != gridSize) {
+                std::cerr << "Error: Unexpected value length in map file: " << value << std::endl;
+                return;
+            }
+            row.push_back(std::stoi(value));
             if (!(file >> value)) {
                 std::cerr << "Error reading map file: " << mapFile << std::endl;
                 return;
