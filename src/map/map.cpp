@@ -1,6 +1,7 @@
 #include "map.hpp"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const std::vector<std::string>& backgroundImageFiles, int selectedBackgroundIndex)
     : gridSize(gridSize), windowSize(windowSize) {
@@ -27,10 +28,10 @@ void GridMap::loadMap(const std::string& mapFile) {
     std::string line;
     while (std::getline(file, line)) {
         std::vector<int> row;
-        std::istringstream iss(line);
+        std::istringstream isstring(line);
 
         std::string value;
-        while (iss >> value) {
+        while (isstring >> value) {
             try {
                 int intValue = std::stoi(value);
                 row.push_back(intValue);
