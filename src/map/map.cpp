@@ -15,6 +15,7 @@ GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const
     }
 }
 
+
 void GridMap::loadMap(const std::string& mapFile) {
     std::ifstream file(mapFile);
 
@@ -27,11 +28,17 @@ void GridMap::loadMap(const std::string& mapFile) {
     while (file >> value) {
         std::vector<int> row;
         for (int i = 0; i < windowSize / gridSize; ++i) {
-            if (value.length() != gridSize) {
-                std::cerr << "Error: Unexpected value length in map file: " << value << std::endl;
+            try {
+                int intValue = std::stoi(value);
+                row.push_back(intValue);
+            } catch (const std::invalid_argument& e) {
+                std::cerr << "Error converting value to integer: " << value << std::endl;
+                return;
+            } catch (const std::out_of_range& e) {
+                std::cerr << "Error: Value out of range for integer: " << value << std::endl;
                 return;
             }
-            row.push_back(std::stoi(value));
+
             if (!(file >> value)) {
                 std::cerr << "Error reading map file: " << mapFile << std::endl;
                 return;
@@ -42,6 +49,7 @@ void GridMap::loadMap(const std::string& mapFile) {
 
     file.close();
 }
+
 
 void GridMap::loadBackgrounds(const std::vector<std::string>& backgroundImageFiles) {
     for (const auto& file : backgroundImageFiles) {
