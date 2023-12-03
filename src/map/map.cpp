@@ -75,14 +75,13 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
         // Check if the indices are within the valid range
         if (rowIndex >= 0 && rowIndex < mapData.size() && columnIndex >= 0 && columnIndex < mapData[0].size()) {
             // Check if the value is 1 before updating
-            if (mapData[rowIndex][columnIndex] == 1 or mapData[rowIndex][columnIndex] == 0) {
+            if (mapData[rowIndex][columnIndex] == 1 || mapData[rowIndex][columnIndex] == 0) {
                 // Change the value to represent a different image index
                 // For example, set it to 2 for the third image in backgroundImageTextures
                 mapData[rowIndex][columnIndex] = 2;
                 sf::Sprite cellS(backgroundImageTextures[mapData[rowIndex][columnIndex]]);
                 cellS.setPosition(rowIndex*gridSize, columnIndex*gridSize);
                 sf::RenderWindow window;
-                printf("cell works");
                 window.draw(cellS);
             }
         }

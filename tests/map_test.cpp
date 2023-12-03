@@ -12,22 +12,28 @@ int main() {
 
     GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
+    
+    
     while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            } else if (event.type == sf::Event::MouseButtonPressed) {
-                grid.handleMouseInput(event.mouseButton);
-            }
-        }
-
+        
         window.clear();
 
         // Draw the grid
         grid.draw(window);
 
         window.display();
+        
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                grid.handleMouseInput(event.mouseButton);
+            }
+        }
+
+
     }
 
     return 0;
