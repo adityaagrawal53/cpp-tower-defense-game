@@ -12,7 +12,7 @@ int main() {
 
     GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
-    
+    grid.loadMap("map/default/map.txt");
     
     while (window.isOpen()) {
         sf::Event event;
@@ -23,7 +23,7 @@ int main() {
         grid.draw(window);
 
         window.display();
-        
+
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
