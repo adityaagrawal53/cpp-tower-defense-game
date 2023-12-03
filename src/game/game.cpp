@@ -221,6 +221,6 @@ void Game::setPlayerMoney(int money) {
     playerMoney = money;
 }
 
-GridMap Game::getMap() const { 
+const GridMap& Game::getMap() const { 
     return map;
 }

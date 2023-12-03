@@ -33,6 +33,9 @@ public:
     int getPlayerMoney() const;
     void setPlayerMoney(int money);
 
+    //GridMap getMap() const;
+    const GridMap& getMap() const { return map; }
+
 
 private:
     sf::RenderWindow window;

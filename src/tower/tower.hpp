@@ -6,11 +6,11 @@ class Game;
 
 class Tower;
 
-
-
 #include <string>
 #include "../game/game.hpp"
 #include "../enemy/enemy.hpp"
+
+class Enemy;
 
 struct TowerPos {
     double x;
