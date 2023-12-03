@@ -4,8 +4,8 @@ TreeEnemy::TreeEnemy(Game* game, std::queue<Checkpoint> checkpoints): Enemy(game
 
 void TreeEnemy::die() {
     game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
-    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
-    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos(), getYPos()));
+    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos() + 3.f, getYPos() + 3.f));
+    game_->getEnemies().push_back(PlantEnemy(game_, getCheckpoints(), getXPos() - 3.f, getYPos() - 3.f));
     
     dead = true;
 }
