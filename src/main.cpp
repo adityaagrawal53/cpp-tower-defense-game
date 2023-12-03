@@ -13,6 +13,11 @@ int main() {
     GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
     grid.loadMap("map/default/map.txt");
+
+    std::cout << "Checkpoints:\n";
+    for (const auto& checkpoint : grid.checkpoints) {
+        std::cout << "X: " << checkpoint.first << ", Y: " << checkpoint.second << "\n";
+    }
     
     while (window.isOpen()) {
         sf::Event event;

@@ -33,6 +33,7 @@ public:
     int getPlayerMoney() const;
     void setPlayerMoney(int money);
 
+
 private:
     sf::RenderWindow window;
     GridMap map;
@@ -58,4 +59,5 @@ private:
     void loadWave(int waveNumber);
     void loadMap(const std::string& mapConfigFile);
     void loadEnemies(const std::string& enemyConfigFile);
+
 };

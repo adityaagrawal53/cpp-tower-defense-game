@@ -183,7 +183,7 @@ void Game::loadEnemies(const std::string& enemyConfigFile) {
     int hp, attack, xp;
     float speed;
     while (enemyConfigStream >> hp >> speed >> attack >> xp) {
-        enemies.push_back(Enemy(hp, speed, attack, xp, /* additional parameters if needed */));
+        enemies.push_back(Enemy(this, hp, speed, attack, xp /* additional parameters if needed */));
     }
 
     enemyConfigStream.close();
@@ -220,3 +220,4 @@ int Game::getPlayerMoney() const {
 void Game::setPlayerMoney(int money) {
     playerMoney = money;
 }
+

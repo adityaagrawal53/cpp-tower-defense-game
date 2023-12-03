@@ -11,6 +11,7 @@ public:
     void handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
     void loadMap(const std::string& mapFile);
     void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
+    std::vector<std::pair<int, int>> checkpoints;
 
 private:
     int gridSize;
@@ -18,6 +19,7 @@ private:
     std::vector<std::vector<int>> mapData;
     std::vector<sf::Texture> backgroundImageTextures;
     sf::Sprite backgroundImage;
+    
 
     
     

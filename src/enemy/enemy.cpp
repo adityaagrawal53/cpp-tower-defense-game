@@ -117,3 +117,24 @@ bool Enemy::isDead() const {
 std::queue<Checkpoint> Enemy::getCheckpoints() const {
     return checkpoints_;
 }
+
+void Game::loadEnemies(const std::string& enemyConfigFile) {
+    std::ifstream enemyConfigStream(enemyConfigFile);
+    if (!enemyConfigStream.is_open()) {
+        // Handle file opening error
+        return;
+    }
+
+    // Clear existing enemies
+    enemies.clear();
+
+    // Read enemy configurations
+    int hp, attack, xp;
+    float speed;
+    while (enemyConfigStream >> hp >> speed >> attack >> xp) {
+        // Create an enemy and add it to the vector
+        enemies.push_back(Enemy(this, hp, speed, attack, xp, /* additional parameters if needed */));
+    }
+
+    enemyConfigStream.close();
+}

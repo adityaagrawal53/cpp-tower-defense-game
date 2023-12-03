@@ -26,24 +26,46 @@ void GridMap::loadMap(const std::string& mapFile) {
     }
 
     std::string line;
-    while (std::getline(file, line)) {
-        std::vector<int> row;
-        std::istringstream isstring(line);
+    bool readingCheckpoints = false; 
 
-        std::string value;
-        while (isstring >> value) {
-            try {
-                int intValue = std::stoi(value);
-                row.push_back(intValue);
-            } catch (const std::invalid_argument& e) {
-                std::cerr << "Error converting string to integer: " << value << std::endl;
-                return;
-            }
+    while (std::getline(file, line)) {
+        if (line.empty()) { 
+            continue;
         }
 
-        mapData.push_back(row);
-    }
 
+        if (line.find("[CHECKPOINTS]") != std::string::npos){ 
+            readingCheckpoints = true;
+            continue;   
+        }
+
+        if (readingCheckpoints) { 
+            std::istringstream isstring(line);
+            int x, y;
+            char comma;
+            while (isstring >> x >> comma >> y) {
+                checkpoints.push_back(std::make_pair(x, y));
+            }
+
+        }
+        else{
+            std::vector<int> row;
+            std::istringstream isstring(line);
+
+            std::string value;
+            while (isstring >> value) {
+                try {
+                    int intValue = std::stoi(value);
+                    row.push_back(intValue);
+                } catch (const std::invalid_argument& e) {
+                    std::cerr << "Error converting string to integer: " << value << std::endl;
+                    return;
+                }
+            }
+
+            mapData.push_back(row);
+        }
+    }
     file.close();
 }
 
