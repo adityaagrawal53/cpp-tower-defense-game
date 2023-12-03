@@ -5,7 +5,7 @@
 
 class BombEnemy : public Enemy {
   public:
-    BombEnemy(Game* game, std::queue<Checkpoint> checkpoints);
+    BombEnemy(Game* game, std::queue<std::pair<int, int>> checkpoints);
 
     /**
      * \brief When attacking a Tower, also damage nearby Towers

@@ -1,9 +1,9 @@
 #include "enemy.hpp"
 
-Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<Checkpoint> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
+Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
     //xPos_ = checkpoints.front().x;
     //yPos_ = checkpoints.front().y;
-    setPosition(checkpoints.front().x, checkpoints.front().y);
+    setPosition(checkpoints.front().first, checkpoints.front().second);
 }
 
 void Enemy::setPosition(float x, float y) {
@@ -32,8 +32,8 @@ float Enemy::getYPos() const {
 
 void Enemy::move() {
     if(!checkpoints_.empty()) {
-        float xDist = checkpoints_.front().x - xPos_;
-        float yDist = checkpoints_.front().y - yPos_;
+        float xDist = checkpoints_.front().first - xPos_;
+        float yDist = checkpoints_.front().second - yPos_;
 
         float xVel, yVel;
 
@@ -114,6 +114,6 @@ bool Enemy::isDead() const {
     return dead;
 }
 
-std::queue<Checkpoint> Enemy::getCheckpoints() const {
+std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {
     return checkpoints_;
 }

@@ -1,6 +1,6 @@
 #include "enemy-bomb.hpp"
 
-BombEnemy::BombEnemy(Game* game, std::queue<Checkpoint> checkpoints): Enemy(game, 30, 0.3, 3, 15, 0.6, checkpoints) { }
+BombEnemy::BombEnemy(Game* game, std::queue<std::pair<int, int>> checkpoints): Enemy(game, 30, 0.3, 3, 15, 0.6, checkpoints) { }
 
 void BombEnemy::attack() {
     TowerPos p = getTowersInRange().front().getPosition();
