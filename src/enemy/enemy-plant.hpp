@@ -9,7 +9,7 @@ class PlantEnemy : public Enemy {
      * \brief Default constructor
     */
     PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints);
-    //PlantEnemy(Game* game);
+    PlantEnemy(Game* game);
     
     /**
      * \brief Constructor that sets initial position of PlantEnemy to (x, y)
