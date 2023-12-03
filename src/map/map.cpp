@@ -24,26 +24,22 @@ void GridMap::loadMap(const std::string& mapFile) {
         return;
     }
 
-    std::string value;
-    while (file >> value) {
+    std::string line;
+    while (std::getline(file, line)) {
         std::vector<int> row;
-        for (int i = 0; i < windowSize / gridSize; ++i) {
+        std::istringstream iss(line);
+
+        std::string value;
+        while (iss >> value) {
             try {
                 int intValue = std::stoi(value);
                 row.push_back(intValue);
             } catch (const std::invalid_argument& e) {
-                std::cerr << "Error converting value to integer: " << value << std::endl;
-                return;
-            } catch (const std::out_of_range& e) {
-                std::cerr << "Error: Value out of range for integer: " << value << std::endl;
-                return;
-            }
-
-            if (!(file >> value)) {
-                std::cerr << "Error reading map file: " << mapFile << std::endl;
+                std::cerr << "Error converting string to integer: " << value << std::endl;
                 return;
             }
         }
+
         mapData.push_back(row);
     }
 
