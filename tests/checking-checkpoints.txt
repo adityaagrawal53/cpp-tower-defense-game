@@ -1,0 +1,7 @@
+    std::queue<std::pair<int, int>> tempQueue = grid.checkpoints;
+
+    while (!tempQueue.empty()) {
+        const auto& checkpoint = tempQueue.front();
+        std::cout << "X: " << checkpoint.first << ", Y: " << checkpoint.second << "\n";
+        tempQueue.pop();
+    }
