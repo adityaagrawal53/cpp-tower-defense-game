@@ -79,6 +79,10 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
                 // Change the value to represent a different image index
                 // For example, set it to 2 for the third image in backgroundImageTextures
                 mapData[rowIndex][columnIndex] = 2;
+                sf::Sprite cellS(backgroundImageTextures[mapData[rowIndex][columnIndex]]);
+                cellS.setPosition(rowIndex*gridSize, columnIndex*gridSize);
+                sf::RenderWindow window;
+                window.draw(cellS);
             }
         }
     }
