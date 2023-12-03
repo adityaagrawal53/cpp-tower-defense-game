@@ -1,4 +1,5 @@
-
+#ifndef MAP_HPP
+#define MAP_HPP
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -19,3 +20,5 @@ private:
     void loadMap(const std::string& mapFile);
     void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
 };
+
+#endif
