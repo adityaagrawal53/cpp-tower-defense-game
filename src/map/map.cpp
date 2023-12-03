@@ -82,6 +82,7 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
                 sf::Sprite cellS(backgroundImageTextures[mapData[rowIndex][columnIndex]]);
                 cellS.setPosition(rowIndex*gridSize, columnIndex*gridSize);
                 sf::RenderWindow window;
+                printf("cell works");
                 window.draw(cellS);
             }
         }
