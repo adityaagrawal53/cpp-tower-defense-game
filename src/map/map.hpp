@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <queue>
 
 class GridMap {
 public:
@@ -11,7 +12,7 @@ public:
     void handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
     void loadMap(const std::string& mapFile);
     void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
-    std::vector<std::pair<int, int>> checkpoints;
+    std::queue<std::pair<int, int>> checkpoints;
 
 private:
     int gridSize;

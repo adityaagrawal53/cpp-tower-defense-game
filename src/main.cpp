@@ -15,8 +15,14 @@ int main() {
     grid.loadMap("map/default/map.txt");
 
     std::cout << "Checkpoints:\n";
-    for (const auto& checkpoint : grid.checkpoints) {
+
+    // Create a temporary queue to iterate and print the elements
+    std::queue<std::pair<int, int>> tempQueue = grid.checkpoints;
+
+    while (!tempQueue.empty()) {
+        const auto& checkpoint = tempQueue.front();
         std::cout << "X: " << checkpoint.first << ", Y: " << checkpoint.second << "\n";
+        tempQueue.pop();
     }
     
     while (window.isOpen()) {

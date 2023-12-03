@@ -44,7 +44,7 @@ void GridMap::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
-                checkpoints.push_back(std::make_pair(x, y));
+                checkpoints.push(std::make_pair(x, y));
             }
 
         }
