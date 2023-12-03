@@ -19,10 +19,10 @@ class Tower;
  * 
  * \param x, y coordinates of checkpoint
 */
-struct Checkpoint {
-    double x;
-    double y;
-};
+//struct Checkpoint {
+//    double x;
+//    double y;
+//};
 
 /**
  * \brief class Enemy is an abstract class that describes an enemy
@@ -52,7 +52,7 @@ class Enemy {
      * \param coins how many coins enemy gives when destroyed
      * \param range detection radius of Enemy
     */
-    Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<Checkpoint> checkpoints);
+    Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
 
     /**
      * \brief Virtual destroyer
@@ -125,7 +125,7 @@ class Enemy {
      * 
      * \return Enemy's Checkpoint list.
     */
-    std::queue<Checkpoint> getCheckpoints() const;
+    std::queue<std::pair<int, int>> getCheckpoints() const;
 
   protected:
     int HP_;
@@ -134,7 +134,7 @@ class Enemy {
     int coins_;
     double range_;
     float xPos_, yPos_;
-    std::queue<Checkpoint> checkpoints_;
+    std::queue<std::pair<int, int>> checkpoints_;
 
     Game* game_;
   
