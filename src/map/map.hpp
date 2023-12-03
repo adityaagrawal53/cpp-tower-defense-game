@@ -9,6 +9,8 @@ public:
     GridMap(int gridSize, int windowSize, const std::string& mapFile, const std::vector<std::string>& backgroundImageFiles, int selectedBackgroundIndex);
     void draw(sf::RenderWindow& window);
     void handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
+    void loadMap(const std::string& mapFile);
+    void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
 
 private:
     int gridSize;
@@ -17,8 +19,8 @@ private:
     std::vector<sf::Texture> backgroundImageTextures;
     sf::Sprite backgroundImage;
 
-    void loadMap(const std::string& mapFile);
-    void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
+    
+    
 };
 
 #endif
