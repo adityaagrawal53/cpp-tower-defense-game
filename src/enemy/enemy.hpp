@@ -19,10 +19,10 @@ class Tower;
  * 
  * \param x, y coordinates of checkpoint
 */
-//struct Checkpoint {
-//    double x;
-//    double y;
-//};
+struct Checkpoint {
+    double x;
+    double y;
+};
 
 /**
  * \brief class Enemy is an abstract class that describes an enemy

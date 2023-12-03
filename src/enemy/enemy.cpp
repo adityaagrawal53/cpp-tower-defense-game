@@ -131,9 +131,10 @@ void Game::loadEnemies(const std::string& enemyConfigFile) {
     // Read enemy configurations
     int hp, attack, xp;
     float speed;
+    double coin;
     while (enemyConfigStream >> hp >> speed >> attack >> xp) {
         // Create an enemy and add it to the vector
-        enemies.push_back(Enemy(this, hp, speed, attack, xp, /* additional parameters if needed */));
+        enemies.push_back(Enemy(this, hp, speed, attack, xp, coin, this->getMap().checkpoints));
     }
 
     enemyConfigStream.close();

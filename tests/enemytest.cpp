@@ -101,6 +101,12 @@ int main() {
 
     enemies.push_back(test);
     enemies.push_back(test2);
+
+    sf::Texture enemyTexture;
+    if (!enemyTexture.loadFromFile("angry_man.png")) {
+        std::cerr << "Failed to load enemy texture!" << std::endl;
+        return EXIT_FAILURE;
+    }
     
     // Start the game loop
     while (window.isOpen()) {
@@ -138,12 +144,11 @@ int main() {
         
         // 
         for(auto e : enemies) {
-            sf::CircleShape shape(35.f);
-            shape.setFillColor(sf::Color::Green);
-            shape.setOrigin(35.f, 35.f);
-            
-            shape.setPosition(e->getXPos(), e->getYPos());
-            window.draw(shape);
+            sf::Sprite enemySprite(enemyTexture);
+            enemySprite.setOrigin(35.f, 35.f);
+
+            enemySprite.setPosition(e->getXPos(), e->getYPos());
+            window.draw(enemySprite);
 
             e->move();
         }
