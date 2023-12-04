@@ -1,16 +1,16 @@
-// Game.h
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "../enemy/enemy.hpp"
 #include "../tower/tower.hpp"
 #include "../map/map.hpp"
-
 #include <fstream>
+#include <queue>
 
 class Game {
 public:
-    Game();
+    Game(const GridMap& initialMap);
 
     // Game initialization
     void initialize();
@@ -33,6 +33,8 @@ public:
     int getPlayerMoney() const;
     void setPlayerMoney(int money);
 
+    GridMap getMap() const;
+    std::queue<std::pair<int, int>> getCheckpoints();
 
 private:
     sf::RenderWindow window;
@@ -47,8 +49,6 @@ private:
     int playerMoney;
     std::vector<Enemy> enemies;
     std::vector<Tower> towers;
-    
-
 
     // Methods to handle game logic
     void handleInput();
@@ -60,4 +60,6 @@ private:
     void loadMap(const std::string& mapConfigFile);
     void loadEnemies(const std::string& enemyConfigFile);
 
+    void spawnEnemiesForRound(int roundNumber);
+    void handleTowerEnemyInteractions();
 };

@@ -16,68 +16,14 @@ int main() {
     auto desktop = sf::VideoMode::getDesktopMode();
     window.setPosition(sf::Vector2i(desktop.width/2 - window.getSize().x/2, desktop.height/2 - window.getSize().y/2));
 
-    //TODO: wait in seconds
-    Checkpoint checkpoint1 = {300, 200, 300};
-    Checkpoint checkpoint2 = {350, 400, 200};
-    Checkpoint checkpoint3 = {500, 100, 0};
-    Checkpoint checkpoint4 = {600, 300, 0};
-    Checkpoint checkpoint5 = {600, 400, 0};
-    Checkpoint checkpoint6 = {500, 400, 0};
-    Checkpoint checkpoint7 = {300, 500, 0};
-    Checkpoint checkpoint8 = {500, 500, 0};
-    Checkpoint checkpoint9 = {500, 600, 0};
-    Checkpoint checkpoint0 = {600, 300, 0};
+    std::vector<std::string> backgroundFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
+    int selectedBackgroundIndex = 1; // Change this index to select a different background
 
-    sf::CircleShape cp1(15.f);
-    sf::CircleShape cp2(15.f);
-    sf::CircleShape cp3(15.f);
-    sf::CircleShape cp4(15.f);
-    sf::CircleShape cp5(15.f);
-    sf::CircleShape cp6(15.f);
-    sf::CircleShape cp7(15.f);
-    sf::CircleShape cp8(15.f);
-    sf::CircleShape cp9(15.f);
-    sf::CircleShape cp0(15.f);
+    GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
-    cp1.setFillColor(sf::Color::Red);
-    cp1.setOrigin(15.f, 15.f);
-    cp1.setPosition(checkpoint1.x, checkpoint1.y);
+    grid.loadMap("map/default/map.txt");
 
-    cp2.setFillColor(sf::Color::Red);
-    cp2.setOrigin(15.f, 15.f);
-    cp2.setPosition(checkpoint2.x, checkpoint2.y);
-
-    cp3.setFillColor(sf::Color::Red);
-    cp3.setOrigin(15.f, 15.f);
-    cp3.setPosition(checkpoint3.x, checkpoint3.y);
-
-    cp4.setFillColor(sf::Color::Red);
-    cp4.setOrigin(15.f, 15.f);
-    cp4.setPosition(checkpoint4.x, checkpoint4.y);
-
-    cp5.setFillColor(sf::Color::Red);
-    cp5.setOrigin(15.f, 15.f);
-    cp5.setPosition(checkpoint5.x, checkpoint5.y);
-
-    cp6.setFillColor(sf::Color::Red);
-    cp6.setOrigin(15.f, 15.f);
-    cp6.setPosition(checkpoint6.x, checkpoint6.y);
-
-    cp7.setFillColor(sf::Color::Red);
-    cp7.setOrigin(15.f, 15.f);
-    cp7.setPosition(checkpoint7.x, checkpoint7.y);
-
-    cp8.setFillColor(sf::Color::Red);
-    cp8.setOrigin(15.f, 15.f);
-    cp8.setPosition(checkpoint8.x, checkpoint8.y);
-
-    cp9.setFillColor(sf::Color::Red);
-    cp9.setOrigin(15.f, 15.f);
-    cp9.setPosition(checkpoint9.x, checkpoint9.y);
-
-    cp0.setFillColor(sf::Color::Red);
-    cp0.setOrigin(15.f, 15.f);
-    cp0.setPosition(checkpoint0.x, checkpoint0.y);
+    Game game;
 
     // Add Checkpoints to the list
     std::queue<Checkpoint> checkpoints;

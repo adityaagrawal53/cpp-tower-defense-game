@@ -5,6 +5,7 @@
 class Game;
 
 class Tower;
+class Enemy;
 
 
 

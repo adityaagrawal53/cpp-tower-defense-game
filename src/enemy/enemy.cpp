@@ -1,12 +1,18 @@
 #include "enemy.hpp"
 
-Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
+/*Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
     //xPos_ = checkpoints.front().x;
     //yPos_ = checkpoints.front().y;
-    setPosition(checkpoints.front().first, checkpoints.front().second);
+    setPosition(checkpoints_.front().first, checkpoints_.front().second);
+}*/
+
+Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(game->getCheckpoints()) {
+    //xPos_ = checkpoints.front().x;
+    //yPos_ = checkpoints.front().y;
+    setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
-void Enemy::setPosition(float x, float y) {
+void Enemy::setPosition(int x, int y) {
     xPos_ = x;
     yPos_ = y;
 }
@@ -22,12 +28,12 @@ void Enemy::setHP(int amount) {
     }
 }
 
-float Enemy::getXPos() const {
-    return xPos_;
+int Enemy::getXPos() const {
+    return checkpoints_.front().first;
 }
 
-float Enemy::getYPos() const {
-    return yPos_;
+int Enemy::getYPos() const {
+    return checkpoints_.front().second;
 }
 
 void Enemy::move() {
@@ -118,24 +124,5 @@ std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {
     return checkpoints_;
 }
 
-void Game::loadEnemies(const std::string& enemyConfigFile) {
-    std::ifstream enemyConfigStream(enemyConfigFile);
-    if (!enemyConfigStream.is_open()) {
-        // Handle file opening error
-        return;
-    }
 
-    // Clear existing enemies
-    enemies.clear();
 
-    // Read enemy configurations
-    int hp, attack, xp;
-    float speed;
-    double coin;
-    while (enemyConfigStream >> hp >> speed >> attack >> xp) {
-        // Create an enemy and add it to the vector
-        enemies.push_back(Enemy(this, hp, speed, attack, xp, coin, this->getMap().checkpoints));
-    }
-
-    enemyConfigStream.close();
-}

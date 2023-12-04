@@ -53,7 +53,7 @@ class Enemy {
      * \param range detection radius of Enemy
     */
     Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
-
+    Enemy(Game* game, int HP, float speed, int ATK, int coins, double range);
     /**
      * \brief Virtual destroyer
     */
@@ -65,7 +65,7 @@ class Enemy {
      * \param x x-coordinate of Enemy
      * \param y y-coordinate of Enemy
     */
-    void setPosition(float x, float y);
+    void setPosition(int x, int y);
 
     /**
      * \brief Returns the Enemy's HP as an integer.
@@ -87,8 +87,8 @@ class Enemy {
      * 
      * \return Enemy's position as a float.
     */
-    float getXPos() const;
-    float getYPos() const;
+    int getXPos() const;
+    int getYPos() const;
 
     /**
      * \brief Moves Enemy.

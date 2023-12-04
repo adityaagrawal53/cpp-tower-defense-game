@@ -5,7 +5,7 @@
 // Game.cpp
 
 
-Game::Game() : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(50, 10, 10, "background_image.jpg", "map.txt") {
+Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(initialMap) {
     // Initialize game variables
     playerHealth = 100;
     playerScore = 0;
@@ -132,11 +132,6 @@ void Game::spawnEnemiesForRound(int roundNumber) {
 
 
 
-void Game::initialize() {
-    // Load the first wave
-    loadWave(currentWave);
-}
-
 void Game::loadWave(int waveNumber) {
     // Construct filenames for map and enemy configuration
     std::string mapConfigFile = "wave" + std::to_string(waveNumber) + "_map_config.txt";
@@ -223,4 +218,30 @@ void Game::setPlayerMoney(int money) {
 
 GridMap Game::getMap() const { 
     return map;
+}
+
+void Game::loadEnemies(const std::string& enemyConfigFile) {
+    std::ifstream enemyConfigStream(enemyConfigFile);
+    if (!enemyConfigStream.is_open()) {
+        // Handle file opening error
+        return;
+    }
+
+    // Clear existing enemies
+    enemies.clear();
+
+    // Read enemy configurations
+    int hp, attack, xp;
+    float speed;
+    double coin;
+    while (enemyConfigStream >> hp >> speed >> attack >> xp) {
+        // Create an enemy and add it to the vector
+        enemies.push_back(Enemy(this, hp, speed, attack, xp, coin));
+    }
+
+    enemyConfigStream.close();
+}
+
+std::queue<std::pair<int,int>> Game::getCheckpoints() { 
+    return this->getMap().checkpoints;
 }
