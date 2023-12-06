@@ -5,7 +5,7 @@
 
 class FireEnemy : public Enemy {
   public:
-    FireEnemy(Game* game, std::queue<Checkpoint> checkpoints);
+    FireEnemy(Game* game);
 
     /**
      * \brief Deal damage over time

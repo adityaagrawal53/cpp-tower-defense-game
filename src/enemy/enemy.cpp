@@ -12,20 +12,26 @@ Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range):
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
+
 Enemy::Enemy(Game* game, const std::string& type) {
     if (type == "p") {        // plant type
-        PlantEnemy(game);
+        PlantEnemy(*game);
     } else if (type == "b") { // bomb type
-
+        BombEnemy(*game);
     } else if (type == "o") { // boss type
+        //will be implemented later 
     } else if (type == "f") { // fire type
+        //no
     } else if (type == "g") { // ground type
+        //no 
     } else if (type == "m") { // magic type
+        //no
     } else if (type == "t") { // tree type
+        TreeEnemy(*game);
     } else if (type == "w") { // water type
-    } else { return; }
+        //no
+    } else { PlantEnemy(*game); }
 
-    
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
@@ -141,5 +147,19 @@ std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {
     return checkpoints_;
 }
 
+std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename) {
+    std::vector<Enemy> enemies;
 
+    std::ifstream inputFile(filename);
+    if (!inputFile.is_open()) {
+        return enemies;
+    }
 
+    std::string line;
+    while (std::getline(inputFile, line)) { 
+        enemies.emplace_back(game, line);
+    }
+
+    inputFile.close();
+    return enemies;
+}
