@@ -19,11 +19,13 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
     if (!quitTexture.loadFromFile("menu/pic/quit.png")){
         std::cout <<"quit pic loading error";
     }
+
+
     startButton.setTexture(startTexture);
-    startButton.setPosition(window.getSize().x / 2 - startButton.getGlobalBounds().width / 2, 150);
+    startButton.setPosition(window.getSize().x / 2 - startButton.getGlobalBounds().width / 2, 250);
 
     quitButton.setTexture(quitTexture);
-    quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width /2, 250 );
+    quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width /2, 400 );
 
 }
 
