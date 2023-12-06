@@ -17,6 +17,21 @@ class PlantEnemy : public Enemy {
     */
     //PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints, float x, float y);
     PlantEnemy(Game* game, float x, float y);
+
+    void draw(sf::RenderWindow& window) {
+        sf::Texture texture;
+
+        if(!texture.loadFromFile("")) {
+            std::cout << "Could not load from " << "" << std::endl;
+            return;
+        }
+
+        sf::Sprite enemySprite;
+        enemySprite.setTexture(texture);
+        enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
+        enemySprite.setPosition(xPos_, yPos_);
+        window.draw(enemySprite);
+    }
 };
 
 #endif

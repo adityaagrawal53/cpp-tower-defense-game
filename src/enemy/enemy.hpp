@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <math.h>           //Trigonometric functions
+#include <iostream>
 
 //Forward declaration to avoid circular dependency
 class Game;
@@ -136,6 +137,8 @@ class Enemy {
      * \return Enemy's Checkpoint list.
     */
     std::queue<std::pair<int, int>> getCheckpoints() const;
+
+    virtual void draw(sf::RenderWindow& window) = 0;
 
     std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename);
 
