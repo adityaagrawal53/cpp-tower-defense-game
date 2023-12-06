@@ -12,19 +12,26 @@ Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower D
     playerMoney = 1000;
 
     // Initialize game elements
-    initialize();
-}
-
-void Game::initialize() {
-    // Load the first round
     loadWave(currentWave);
 }
 
-void Game::run() {
+void Game::loadWave(int roundNumber) { 
+    loadEnemies(roundNumber);
+    //loadTowers(roundNumber);
+    //loadMap (??)
+}
+
+
+void Game::run(){
+    
     while (window.isOpen()) {
         handleInput();
-        update();
-        render();
+        if (second_clock.getElapsedTime().asSeconds() >= 1.0) {
+            update();
+            render();
+
+            second_clock.restart();
+        }
     }
 }
 

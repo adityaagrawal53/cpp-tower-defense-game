@@ -51,7 +51,8 @@ private:
     int playerMoney;
     std::vector<Enemy> enemies;
     std::vector<Tower> towers;
-    sf::Clock clock_;
+    sf::Clock second_clock;
+    sf::Clock game_clock;
 
     // Methods to handle game logic
     void handleInput();
@@ -62,5 +63,6 @@ private:
     void loadMap(const std::string& mapConfigFile);
 
     void loadEnemies(int roundNumber);
+    void loadWave(int roundNumber);
     void handleTowerEnemyInteractions();
 };
