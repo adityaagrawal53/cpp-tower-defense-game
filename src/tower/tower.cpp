@@ -45,6 +45,15 @@ void Tower::setHealth(int hp) {
     this->hp = hp;
 }
 
+void Tower::checkHP() {
+    // Check if tower's HP is 0 or below
+    if (getHealth() <= 0) {
+        // Remove the tower from the game
+        removeTowerFromGame();
+    }
+}
+
+
 double Tower::getRange() const {
     return range;
 }
