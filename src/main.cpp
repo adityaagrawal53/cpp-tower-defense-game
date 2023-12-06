@@ -7,6 +7,11 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e9accde5519df53723d3213e82df8f389cf137a6
 #include "menu/menu.hpp"
 
 int main() {

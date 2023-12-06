@@ -7,7 +7,6 @@
 
 Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(initialMap) {
     // Initialize game variables
-    playerHealth = 100;
     playerScore = 0;
     currentWave = 1;
     playerMoney = 1000;
@@ -111,7 +110,7 @@ void Game::spawnEnemiesForRound(int roundNumber) {
     switch (roundNumber) {
         case 1:
             // Load enemies for round 1
-            enemies.push_back(Enemy(/* parameters for enemy 1 */));
+            enemies = Enemy::readEnemiesFromFile(this, "default/enemy1.txt")
             break;
 
         case 2:
