@@ -43,7 +43,26 @@ std::vector<Enemy>& Game::getEnemies() {
     return enemies;
 }
 
+void Game::handleTowerEnemyInteractions() {
+    for (auto& enemy : enemies) {
+        // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
+        enemy.attack();
+    }
 
+    // Render towers
+    for (auto& tower : towers) {
+        tower.attack();
+    }
+
+    // Remove all enemies and towers that are dead
+    enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
+                                 [](const Enemy& enemy) { return enemy.isDead(); }),
+                  enemies.end());
+
+    towers.erase(std::remove_if(towers.begin(), towers.end(),
+                                 [](const Tower& tower) { return tower.getHealth() > 0; }),
+                  towers.end());
+}
 
 void Game::update() {
     // Update game logic, enemy movement, tower attacks, etc.
