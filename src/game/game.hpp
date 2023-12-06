@@ -65,6 +65,7 @@ private:
     // Helper methods
     void loadMap(const std::string& mapConfigFile);
 
+    void loadWave(int roundNumber);
     void loadEnemies(int roundNumber);
     void handleTowerEnemyInteractions();
 };
