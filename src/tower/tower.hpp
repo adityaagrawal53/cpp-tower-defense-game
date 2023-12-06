@@ -48,7 +48,7 @@ public:
     virtual void attack();
 
     //Draw
-    virtual void draw(sf::RenderWindow& window) = 0;
+    virtual void draw(sf::RenderWindow& window);
 
 private:
     std::string name;
