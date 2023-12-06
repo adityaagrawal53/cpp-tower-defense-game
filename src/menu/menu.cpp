@@ -50,7 +50,7 @@ int MainMenu::handleInput() {
                 if (startButton.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
                     return 1; // Start button pressed --> open game window in main
                 } else if (quitButton.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
-                    window.close(); 
+                    return 2; 
                 }
             }
         }
