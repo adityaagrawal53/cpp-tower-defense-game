@@ -12,6 +12,23 @@ Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range):
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
+Enemy::Enemy(Game* game, const std::string& type) {
+    if (type == "p") {        // plant type
+        PlantEnemy(game);
+    } else if (type == "b") { // bomb type
+
+    } else if (type == "o") { // boss type
+    } else if (type == "f") { // fire type
+    } else if (type == "g") { // ground type
+    } else if (type == "m") { // magic type
+    } else if (type == "t") { // tree type
+    } else if (type == "w") { // water type
+    } else { return; }
+
+    
+    setPosition(checkpoints_.front().first, checkpoints_.front().second);
+}
+
 void Enemy::setPosition(int x, int y) {
     xPos_ = x;
     yPos_ = y;
