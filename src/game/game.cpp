@@ -36,17 +36,7 @@ std::vector<Enemy>& Game::getEnemies() {
     return enemies;
 }
 
-void Game::handleInput() {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            window.close();
-        }
 
-        // Handle mouse input for map
-        map.handleMouseInput(event);
-    }
-}
 
 void Game::update() {
     // Update game logic, enemy movement, tower attacks, etc.
@@ -57,7 +47,6 @@ void Game::update() {
     }
 
     handleTowerEnemyInteractions();
-
 
     // Check if the round is completed
     if (enemies.empty()) {
@@ -95,72 +84,6 @@ void Game::render() {
     window.display();
 }
 
-void Game::loadWave(int roundNumber) {
-    // Load enemies and setup for the given round
-    spawnEnemiesForRound(roundNumber);
-}
-
-void Game::spawnEnemiesForRound(int roundNumber) {
-    // Clear existing enemies and towers
-    enemies.clear();
-    towers.clear();
-
-    // Example: Load enemies and towers for each round
-    // Adjust the number, type, and difficulty of enemies as needed
-    switch (roundNumber) {
-        case 1:
-            // Load enemies for round 1
-            enemies = readEnemiesFromFile("default/enemy1.txt");
-            break;
-
-        case 2:
-            // Load enemies for round 2
-            enemies.push_back(Enemy(/* parameters for enemy 1 */));
-            enemies.push_back(Enemy(/* parameters for enemy 2 */));
-            break;
-
-        // Add more cases for additional rounds
-
-        default:
-            // Handle completion of all rounds (victory)
-            // For now, let's close the window
-            window.close();
-            break;
-    }
-}
-
-
-
-void Game::loadWave(int waveNumber) {
-    // Construct filenames for map and enemy configuration
-    std::string mapConfigFile = "wave" + std::to_string(waveNumber) + "_map_config.txt";
-    std::string enemyConfigFile = "wave" + std::to_string(waveNumber) + "_enemy_config.txt";
-
-    // Load map and enemies for the wave
-    loadMap(mapConfigFile);
-    loadEnemies(enemyConfigFile);
-}
-
-
-void Game::loadEnemies(const std::string& enemyConfigFile) {
-    std::ifstream enemyConfigStream(enemyConfigFile);
-    if (!enemyConfigStream.is_open()) {
-        // Handle file opening error
-        return;
-    }
-
-    // Clear existing enemies
-    enemies.clear();
-
-    // Read enemy configurations
-    int hp, attack, xp;
-    float speed;
-    while (enemyConfigStream >> hp >> speed >> attack >> xp) {
-        enemies.push_back(PlantEnemy(this));
-    }
-
-    enemyConfigStream.close();
-}
 
 int Game::getPlayerHealth() const {
     return playerHealth;

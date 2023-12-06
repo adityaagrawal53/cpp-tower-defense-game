@@ -59,10 +59,8 @@ private:
     void render();
 
     // Helper methods
-    void loadWave(int waveNumber);
     void loadMap(const std::string& mapConfigFile);
-    void loadEnemies(const std::string& enemyConfigFile);
 
-    void spawnEnemiesForRound(int roundNumber);
+    void loadEnemies(int roundNumber);
     void handleTowerEnemyInteractions();
 };
