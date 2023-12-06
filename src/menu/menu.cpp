@@ -11,12 +11,12 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
     backgroundSprite.setTexture(backgroundTexture);
 
     // Load start button image
-    if (!startTexture.loadFromFile("menu/pic/start.jpg")) {
+    if (!startTexture.loadFromFile("menu/pic/start.png")) {
         std::cout <<"start pic loading error";
     }
 
     // load quit button image
-    if (!quitTexture.loadFromFile("menu/pic/quit.jpg")){
+    if (!quitTexture.loadFromFile("menu/pic/quit.png")){
         std::cout <<"quit pic loading error";
     }
     startButton.setTexture(startTexture);
