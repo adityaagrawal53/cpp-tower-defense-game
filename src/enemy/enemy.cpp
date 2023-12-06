@@ -147,19 +147,4 @@ std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {
     return checkpoints_;
 }
 
-std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename) {
-    std::vector<Enemy> enemies;
 
-    std::ifstream inputFile(filename);
-    if (!inputFile.is_open()) {
-        return enemies;
-    }
-
-    std::string line;
-    while (std::getline(inputFile, line)) { 
-        enemies.emplace_back(game, line);
-    }
-
-    inputFile.close();
-    return enemies;
-}

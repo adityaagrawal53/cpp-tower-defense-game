@@ -73,3 +73,31 @@ std::vector<Enemy> Game::readEnemiesFromFile(const std::string& filename) {
     inputFile.close();
     return enemies;
 }
+
+void Game::loadEnemies(int roundNumber) {
+    // Clear existing enemies and towers
+    enemies.clear();
+    towers.clear();
+
+    // Example: Load enemies and towers for each round
+    // Adjust the number, type, and difficulty of enemies as needed
+    switch (roundNumber) {
+        case 1:
+            // Load enemies for round 1
+            enemies = readEnemiesFromFile("default/enemy1.txt");
+            break;
+
+        case 2:
+            // Load enemies for round 2
+            enemies = readEnemiesFromFile("default/enemy2.txt");
+            break;
+
+        // Add more cases for additional rounds
+
+        default:
+            // Handle completion of all rounds (victory)
+            // For now, let's close the window
+            window.close();
+            break;
+    }
+}
