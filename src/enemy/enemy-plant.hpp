@@ -8,7 +8,7 @@ class PlantEnemy : public Enemy {
     /**
      * \brief Default constructor
     */
-    PlantEnemy(Game* game, std::queue<std::pair<int, int>> checkpoints);
+    //PlantEnemy(Game* game, std::queue<std::pair<int, int>> checkpoints);
     PlantEnemy(Game* game);
     
     /**
@@ -22,7 +22,7 @@ class PlantEnemy : public Enemy {
         sf::Texture texture;
 
         if(!texture.loadFromFile("")) {
-            std::cout << "Could not load from " << "" << std::endl;
+            std::cout << "Could not load PlantEnemy sprite" << std::endl;
             return;
         }
 

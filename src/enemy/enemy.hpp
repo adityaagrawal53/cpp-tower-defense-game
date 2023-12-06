@@ -138,6 +138,11 @@ class Enemy {
     */
     std::queue<std::pair<int, int>> getCheckpoints() const;
 
+    /**
+     * \brief Draws Enemy
+     * 
+     * \param window Window where Enemy will be drawn 
+    */
     virtual void draw(sf::RenderWindow& window) = 0;
 
     std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename);
