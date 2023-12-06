@@ -16,11 +16,11 @@ public:
             return;
         }
 
-        sf::Sprite enemySprite;
-        enemySprite.setTexture(texture);
-        enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
-        enemySprite.setPosition(getPosition().x, getPosition().y);
-        window.draw(enemySprite);
+        sf::Sprite towerSprite;
+        towerSprite.setTexture(texture);
+        towerSprite.setOrigin(towerSprite.getGlobalBounds().width, towerSprite.getGlobalBounds().height);
+        towerSprite.setPosition(getPosition().x, getPosition().y);
+        window.draw(towerSprite);
     }
 
 private:
