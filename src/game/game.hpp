@@ -51,8 +51,9 @@ private:
     int playerMoney;
     std::vector<Enemy> enemies;
     std::vector<Tower> towers;
-    sf::Clock second_clock;
+    sf::Clock run_clock;
     sf::Clock game_clock;
+    sf::Clock update_clock;
 
     // Methods to handle game logic
     void handleInput();
