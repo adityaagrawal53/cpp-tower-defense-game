@@ -13,11 +13,12 @@ public:
     void loadMap(const std::string& mapFile);
     void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
     std::queue<std::pair<int, int>> checkpoints;
+    std::vector<std::vector<int>> mapData;
 
 private:
     int gridSize;
     int windowSize;
-    std::vector<std::vector<int>> mapData;
+
     std::vector<sf::Texture> backgroundImageTextures;
     sf::Sprite backgroundImage;
     

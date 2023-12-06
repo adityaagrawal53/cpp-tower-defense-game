@@ -142,27 +142,6 @@ void Game::loadWave(int waveNumber) {
     loadEnemies(enemyConfigFile);
 }
 
-void Game::loadMap(const std::string& mapConfigFile) {
-    std::ifstream mapConfigStream(mapConfigFile);
-    if (!mapConfigStream.is_open()) {
-        // Handle file opening error
-        return;
-    }
-
-    // Read map configuration
-    int gridSize, rows, cols;
-    std::string backgroundImageFile, mapLayoutFile, towerImage;
-    mapConfigStream >> gridSize >> rows >> cols >> backgroundImageFile >> mapLayoutFile;
-    mapConfigStream.close();
-
-    // Load the background image
-    if (backgroundImageTexture.loadFromFile(backgroundImageFile)) {
-        backgroundImageSprite.setTexture(backgroundImageTexture);
-    }
-
-    // Initialize the grid and load the map from file
-    map = GridMap(gridSize, rows, cols, backgroundImageFile, mapLayoutFile, towerImage);
-}
 
 void Game::loadEnemies(const std::string& enemyConfigFile) {
     std::ifstream enemyConfigStream(enemyConfigFile);

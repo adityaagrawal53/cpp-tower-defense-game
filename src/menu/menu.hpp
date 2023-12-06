@@ -7,7 +7,7 @@ public:
     MainMenu(sf::RenderWindow& window);
     void draw();
     int handleInput();
-private:
+
     sf::RenderWindow& window;
 
     // Background
