@@ -38,6 +38,8 @@ public:
 
     std::vector<Enemy> readEnemiesFromFile(const std::string& filename);
 
+    std::vector<std::string>& backgroundImageFiles;
+
 private:
     sf::RenderWindow window;
     GridMap map;
@@ -51,8 +53,7 @@ private:
     int playerMoney;
     std::vector<Enemy> enemies;
     std::vector<Tower> towers;
-    sf::Clock second_clock;
-    sf::Clock game_clock;
+    sf::Clock clock_;
 
     // Methods to handle game logic
     void handleInput();
@@ -63,6 +64,5 @@ private:
     void loadMap(const std::string& mapConfigFile);
 
     void loadEnemies(int roundNumber);
-    void loadWave(int roundNumber);
     void handleTowerEnemyInteractions();
 };
