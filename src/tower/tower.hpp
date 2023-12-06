@@ -47,6 +47,9 @@ public:
     std::vector<Enemy> getEnemiesInRange();
     virtual void attack();
 
+    //Draw
+    virtual void draw(sf::RenderWindow& window) = 0;
+
 private:
     std::string name;
     int damage;
