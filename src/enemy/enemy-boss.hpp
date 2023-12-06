@@ -7,11 +7,6 @@ class BossEnemy : public Enemy {
   public:
     BossEnemy(Game* game);
 
-    /**
-     * \brief When killed, create 3 PlantEnemy enemies.
-    */
-    virtual void die();
-
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
 
