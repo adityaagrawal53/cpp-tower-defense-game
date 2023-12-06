@@ -38,7 +38,7 @@ public:
 
     std::vector<Enemy> readEnemiesFromFile(const std::string& filename);
 
-    std::vector<std::string>& backgroundImageFiles;
+    std::vector<std::string> backgroundImageFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
 
 private:
     sf::RenderWindow window;

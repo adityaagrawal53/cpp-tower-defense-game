@@ -49,28 +49,26 @@ void Game::update() {
     // Update game logic, enemy movement, tower attacks, etc.
 
     // Example: Update enemy positions
-    if (update_clock.getElapsedTime().asSeconds() >= 1.0) {
-        for (auto& enemy : enemies) {
-            enemy.move();
-        }
-
-        handleTowerEnemyInteractions();
-
-        // Check if the round is completed
-        if (enemies.empty()) {
-            currentWave++;
-            loadWave(currentWave);
-        }
-
-        // Check if the player has lost
-        if (playerHealth <= 0) {
-            // Handle game over (display message, reset game, etc.)
-            // For now, let's just close the window
-            window.close();
-        }
-
-        update_clock.restart();
+    for (auto& enemy : enemies) {
+        enemy.move();
     }
+
+    handleTowerEnemyInteractions();
+
+    // Check if the round is completed
+    if (enemies.empty()) {
+        currentWave++;
+        loadWave(currentWave);
+    }
+
+    // Check if the player has lost
+    if (playerHealth <= 0) {
+        // Handle game over (display message, reset game, etc.)
+        // For now, let's just close the window
+        window.close();
+    }
+
+    update_clock.restart();
 }
 
 void Game::render() {
