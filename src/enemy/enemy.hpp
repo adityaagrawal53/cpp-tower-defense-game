@@ -137,6 +137,8 @@ class Enemy {
     */
     std::queue<std::pair<int, int>> getCheckpoints() const;
 
+    std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename);
+
   protected:
     int HP_;
     float speed_;

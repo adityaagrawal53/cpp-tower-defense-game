@@ -8,7 +8,7 @@ class PlantEnemy : public Enemy {
     /**
      * \brief Default constructor
     */
-    PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints);
+    PlantEnemy(Game* game, std::queue<std::pair<int, int>> checkpoints);
     PlantEnemy(Game* game);
     
     /**
@@ -16,6 +16,7 @@ class PlantEnemy : public Enemy {
      *        instead of 1st checkpoint.
     */
     //PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints, float x, float y);
+    PlantEnemy(Game* game, float x, float y);
 };
 
 #endif
