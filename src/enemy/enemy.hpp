@@ -52,7 +52,7 @@ class Enemy {
      * \param coins how many coins enemy gives when destroyed
      * \param range detection radius of Enemy
     */
-    Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
+    //Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
     Enemy(Game* game, int HP, float speed, int ATK, int coins, double range);
     /**
      * \brief Virtual destroyer
