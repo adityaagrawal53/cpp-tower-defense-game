@@ -38,6 +38,8 @@ public:
 
     std::vector<Enemy> readEnemiesFromFile(const std::string& filename);
 
+    std::vector<std::string>& backgroundImageFiles;
+
 private:
     sf::RenderWindow window;
     GridMap map;
@@ -64,6 +66,5 @@ private:
     void loadMap(const std::string& mapConfigFile);
 
     void loadEnemies(int roundNumber);
-    void loadWave(int roundNumber);
     void handleTowerEnemyInteractions();
 };
