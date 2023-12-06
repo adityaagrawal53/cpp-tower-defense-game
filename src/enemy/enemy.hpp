@@ -145,7 +145,6 @@ class Enemy {
     */
     virtual void draw(sf::RenderWindow& window);
 
-    std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename);
 
   protected:
     int HP_;

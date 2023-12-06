@@ -110,7 +110,7 @@ void Game::spawnEnemiesForRound(int roundNumber) {
     switch (roundNumber) {
         case 1:
             // Load enemies for round 1
-            enemies = Enemy::readEnemiesFromFile(this, "default/enemy1.txt")
+            enemies = readEnemiesFromFile("default/enemy1.txt");
             break;
 
         case 2:

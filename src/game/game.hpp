@@ -36,6 +36,8 @@ public:
     GridMap getMap() const;
     std::queue<std::pair<int, int>> getCheckpoints();
 
+    std::vector<Enemy> readEnemiesFromFile(const std::string& filename);
+
 private:
     sf::RenderWindow window;
     GridMap map;
