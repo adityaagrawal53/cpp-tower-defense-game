@@ -6,48 +6,33 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "enemy/enemy.cpp"
-#include "game/game.cpp"
-#include "tower/tower.cpp"
+
+#include "menu/menu.hpp"
 
 int main() {
-    const int gridSize = 32;
-    const int windowSize = gridSize * 16;
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Main Menu");
 
-    sf::RenderWindow window(sf::VideoMode(windowSize, windowSize), "Tower Defense Grid");
+    MainMenu mainMenu(window);
 
-    std::vector<std::string> backgroundFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
-    int selectedBackgroundIndex = 1; // Change this index to select a different background
+    while (window.isOpen()) {
+        int result = 0;
 
-    GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
-
-    grid.loadMap("map/default/map.txt");
-
-    // Assuming you have a Game instance named 'gameInstance'
-    Game* gamePtr = &Game(grid);
-
-    // Replace "enemy_data.txt" with the actual filename you want to test
-    std::vector<Enemy> enemies = readEnemiesFromFile(gamePtr, "tests/enemies.txt");
-
-    // Print information about each enemy
-    for (const auto& enemy : enemies) {
-        std::cout << "Enemy Type: ";
-
-        // Use dynamic_cast to check the actual type of the enemy
-        if (const PlantEnemy* plantEnemy = dynamic_cast<const PlantEnemy*>(&enemy)) {
-            std::cout << "PlantEnemy";
-            // Access specific attributes or methods of PlantEnemy
-        } else if (const BombEnemy* bombEnemy = dynamic_cast<const BombEnemy*>(&enemy)) {
-            std::cout << "BombEnemy";
-            // Access specific attributes or methods of BombEnemy
-        } else if (const TreeEnemy* treeEnemy = dynamic_cast<const TreeEnemy*>(&enemy)) {
-            std::cout << "TreeEnemy";
-            // Access specific attributes or methods of TreeEnemy
-        } else {
-            std::cout << "Unknown Enemy Type";
+        // Main menu loop
+        while (result == 0) {
+            mainMenu.draw();
+            result = mainMenu.handleInput();
         }
 
-        std::cout << std::endl;
+        // Process button press result
+        if (result == 1) {
+            // Start button pressed
+            // Add code to start the game or transition to the next screen
+            // For testing purposes, let's print a message
+            std::cout << "Start button pressed!\n";
+        } else if (result == 2) {
+            // Quit button pressed
+            window.close();
+        }
     }
 
     return 0;

@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 
-#include "menu/menu.hpp"
+#include "menu/menu.cpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Main Menu");
