@@ -143,7 +143,7 @@ class Enemy {
      * 
      * \param window Window where Enemy will be drawn 
     */
-    virtual void draw(sf::RenderWindow& window) = 0;
+    virtual void draw(sf::RenderWindow& window);
 
     std::vector<Enemy> readEnemiesFromFile(Game* game, const std::string& filename);
 
