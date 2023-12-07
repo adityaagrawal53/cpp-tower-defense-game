@@ -60,7 +60,7 @@ void Game::handleTowerEnemyInteractions() {
                   enemies.end());
 
     towers.erase(std::remove_if(towers.begin(), towers.end(),
-                                 [](const Tower& tower) { return tower.getHealth() > 0; }),
+                                 [](const Tower& tower) { return tower.getHealth() <= 0; }),
                   towers.end());
 }
 

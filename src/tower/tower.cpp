@@ -1,5 +1,7 @@
 #include "tower.hpp"
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 Tower::Tower(Game* game, std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): game(game), name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
@@ -44,15 +46,6 @@ int Tower::getHealth() const {
 void Tower::setHealth(int hp) {
     this->hp = hp;
 }
-
-void Tower::checkHP() {
-    // Check if tower's HP is 0 or below
-    if (getHealth() <= 0) {
-        // Remove the tower from the game
-        removeTowerFromGame();
-    }
-}
-
 
 double Tower::getRange() const {
     return range;
@@ -102,6 +95,24 @@ std::vector<Enemy> Tower::getEnemiesInRange() {
 }
 
 void Tower::attack() {
-    Enemy tar = getEnemiesInRange().front();
-    tar.setHP(tar.getHP() - damage);
+    // Get all enemies in range
+    std::vector<Enemy> enemiesInRange = getEnemiesInRange();
+
+    // Apply immediate damage
+    if (!enemiesInRange.empty()) {
+        Enemy target = enemiesInRange.front();
+        target.setHP(target.getHP() - damage);
+    }
+
+    // Apply damage over time
+    for (auto& enemy : enemiesInRange) {
+        int totalTicks = 5; // Dot ticks for 5 seconds
+        int tickDamage = damageOverTime; // Adjust the damage per tick as needed
+
+        // Apply damage over time at 1 tick per second
+        for (int i = 0; i < totalTicks; ++i) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            enemy.setHP(enemy.getHP() - tickDamage);
+        }
+    }
 }
