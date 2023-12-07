@@ -60,19 +60,21 @@ void Game::loadMap(const std::string& mapFile) {
 
 
 std::vector<Enemy> Game::readEnemiesFromFile(const std::string& filename) {
-    std::vector<Enemy> enemies;
+    //std::vector<Enemy> enemies;
 
     std::ifstream inputFile(filename);
     if (!inputFile.is_open()) {
+        std::cout << "closed" << std::endl;
         return enemies;
     }
 
     char enemyType;
     while (inputFile >> enemyType) {
-        std::cout << "creating enemy: " << enemyType << std::endl;
+        //std::cout << "creating enemy: " << enemyType << std::endl;
         enemies.push_back(this->createEnemy(enemyType));
     }
 
+    std::cout << "finished reading" << std::endl;
     inputFile.close();
     return enemies;
 }
@@ -87,12 +89,13 @@ void Game::loadEnemies(int roundNumber) {
     switch (roundNumber) {
         case 1:
             // Load enemies for round 1
-            enemies = readEnemiesFromFile("default/e1.txt");
+            enemies = readEnemiesFromFile("game/default/enemy1.txt");
+            std::cout << "enemy size = " << enemies.size() << std::endl;
             break;
 
         case 2:
             // Load enemies for round 2
-            enemies = readEnemiesFromFile("default/enemy2.txt");
+            enemies = readEnemiesFromFile("game/default/enemy1.txt");
             break;
 
         // Add more cases for additional rounds

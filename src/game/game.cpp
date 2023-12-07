@@ -85,7 +85,9 @@ void Game::run(){
         */
         //Updating and rendering map
         if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
+            std::cout << "updating" << std::endl;
             update();
+            std::cout << "rendereing" << std::endl;
             render();
             std::cout << "Running successfully!";
 
@@ -128,7 +130,9 @@ void Game::update() {
 
     // Example: Update enemy positions
     for (auto& enemy : enemies) {
+        std::cout << "Moving enemy" << std::endl;
         enemy.move();
+        std::cout << "done" << std::endl;
     }
 
     handleTowerEnemyInteractions();

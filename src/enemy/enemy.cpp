@@ -131,8 +131,10 @@ std::vector<Tower> Enemy::getTowersInRange() {
 }
 
 void Enemy::attack() {
-    Tower tar = getTowersInRange().front();
-    tar.setHealth(tar.getHealth() - ATK_);
+    if(!getTowersInRange().empty()) {
+        Tower tar = getTowersInRange().front();
+        tar.setHealth(tar.getHealth() - ATK_);
+    }
 }
 
 void Enemy::die() {
