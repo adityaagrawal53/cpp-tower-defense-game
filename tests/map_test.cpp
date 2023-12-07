@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include "map/GridMap.hpp"
-#include "SideMenu.hpp"
+#include "map/map.hpp"
+#include "sidemenu.hpp"
 
 int main() {
     const int gridSize = 32;
