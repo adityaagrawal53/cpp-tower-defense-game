@@ -1,5 +1,5 @@
-#ifndef TOWER_PLANT_HPP
-#define TOWER_PLANT_HPP
+#ifndef TOWER_WATER_HPP
+#define TOWER_WATER_HPP
 
 #include <string>
 #include "tower.hpp"
