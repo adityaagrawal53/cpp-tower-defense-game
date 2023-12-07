@@ -36,7 +36,6 @@ public:
     void setDamage(int damage);
     int getHealth() const;
     void setHealth(int hp);
-    void checkHP();
     double getRange() const;
     void setRange(double range);
     int getCost() const;
