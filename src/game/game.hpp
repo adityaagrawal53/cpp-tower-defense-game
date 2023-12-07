@@ -12,6 +12,8 @@ class Game {
 public:
     Game(const GridMap& initialMap);
 
+    void createEnemy(const std::string& type);
+
     // Game initialization
     void initialize();
 

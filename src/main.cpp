@@ -1,6 +1,26 @@
+#include <iostream>
+
+#include <list>
+#include <iostream>
+#include <math.h>           //Trigonometric functions
+#include <queue>
+
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "map/map.hpp"
-#include "map/sidemenu.hpp"
+
+
+#include "menu/menu.cpp"
+#include "map/sidemenu.cpp"
+#include "map/map.cpp"
+#include "game/game.cpp"
+
+#include "enemy/enemy.cpp"
+#include "enemy/enemy-plant.cpp"
+#include "enemy/enemy-tree.cpp"
+#include "enemy/enemy-bomb.cpp"
+
+#include "tower/tower.cpp"
+#include "tower/tower-plant.hpp"
 
 int main() {
     const int gridSize = 32;

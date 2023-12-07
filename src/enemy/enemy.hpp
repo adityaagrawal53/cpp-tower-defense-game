@@ -14,14 +14,6 @@ class Tower;
 
 #include "../game/game.hpp"
 #include "../tower/tower.hpp"
-#include "enemy-bomb.hpp"
-#include "enemy-fire.hpp"
-#include "enemy-boss.hpp"
-#include "enemy-ground.hpp"
-#include "enemy-magic.hpp"
-#include "enemy-plant.hpp"
-#include "enemy-tree.hpp"
-#include "enemy-bomb.hpp"
 
 /**
  * \brief class Checkpoint determines how the enemy should move
@@ -64,7 +56,7 @@ class Enemy {
     //Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
     Enemy(Game* game, int HP, float speed, int ATK, int coins, double range);
 
-    Enemy(Game* game, const std::string& type);
+    //Enemy(Game* game, const std::string& type);
     /**
      * \brief Virtual destroyer
     */

@@ -12,7 +12,7 @@ Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range):
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
-
+/*
 Enemy::Enemy(Game* game, const std::string& type) {
     if (type == "p") {        // plant type
         PlantEnemy(*game);
@@ -34,7 +34,7 @@ Enemy::Enemy(Game* game, const std::string& type) {
 
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
-
+*/
 void Enemy::setPosition(int x, int y) {
     xPos_ = x;
     yPos_ = y;
@@ -147,4 +147,6 @@ std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {
     return checkpoints_;
 }
 
+void Enemy::draw(sf::RenderWindow& window) {
 
+}

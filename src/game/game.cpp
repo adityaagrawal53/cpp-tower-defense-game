@@ -1,9 +1,18 @@
 // Game.h
 
 #include "game.hpp"
+#include "game_loading_functions.cpp"
+
+#include "../enemy/enemy-bomb.hpp"
+#include "../enemy/enemy-fire.hpp"
+#include "../enemy/enemy-boss.hpp"
+//#include "../enemy/enemy-ground.cpp"
+//#include "../enemy/enemy-magic.cpp"
+#include "../enemy/enemy-plant.hpp"
+#include "../enemy/enemy-tree.hpp"
+#include "../enemy/enemy-bomb.hpp"
 
 // Game.cpp
-
 
 Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(initialMap) {
     // Initialize game variables
@@ -13,6 +22,26 @@ Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower D
 
     // Initialize game elements
     loadWave(currentWave);
+}
+
+void Game::createEnemy(const std::string& type) {
+    if (type == "p") {        // plant type
+        this->getEnemies().push_back(PlantEnemy(this));
+    } else if (type == "b") { // bomb type
+        this->getEnemies().push_back(BombEnemy(this));
+    } else if (type == "o") { // boss type
+        //will be implemented later 
+    } else if (type == "f") { // fire type
+        //no
+    } else if (type == "g") { // ground type
+        //no 
+    } else if (type == "m") { // magic type
+        //no
+    } else if (type == "t") { // tree type
+        this->getEnemies().push_back(TreeEnemy(this));
+    } else if (type == "w") { // water type
+        //no
+    }
 }
 
 void Game::loadWave(int roundNumber) { 

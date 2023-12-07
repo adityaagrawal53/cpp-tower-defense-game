@@ -116,3 +116,7 @@ void Tower::attack() {
         }
     }
 }
+
+void Tower::draw(sf::RenderWindow& window) {
+
+}
