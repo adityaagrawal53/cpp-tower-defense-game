@@ -19,6 +19,7 @@ Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower D
     playerScore = 0;
     currentWave = 1;
     playerMoney = 1000;
+    playerHealth = 1000;
 
     // Initialize game elements
     loadWave(currentWave);
@@ -54,7 +55,25 @@ void Game::loadWave(int roundNumber) {
 void Game::run(){
     
     while (window.isOpen()) {
-        handleInput();
+        /*
+        //Handling input
+        sf::Event event;
+        
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                // Call handleMouseInput for the GridMap instance
+                grid.handleMouseInput(event.mouseButton);
+
+                // You can also call handleMouseInput for the SideMenu instance if needed
+                sideMenu.handleMouseInput(event.mouseButton);
+            }
+        }
+        map.handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
+        */
+        //Updating and rendering map
         if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
             update();
             render();
