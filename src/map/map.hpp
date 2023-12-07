@@ -14,6 +14,7 @@ public:
     void loadBackgrounds(const std::vector<std::string>& backgroundImageFiles);
     std::queue<std::pair<int, int>> checkpoints;
     std::vector<std::vector<int>> mapData;
+    void setPosition(sf::Vector2f position);
 
 private:
     int gridSize;

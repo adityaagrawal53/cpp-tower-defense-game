@@ -118,3 +118,7 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
         }
     }
 }
+
+void GridMap::setPosition(sf::Vector2f position) {
+    backgroundImage.setPosition(position);
+}
