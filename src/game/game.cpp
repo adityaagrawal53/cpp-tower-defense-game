@@ -89,7 +89,9 @@ void Game::run(){
             update();
             std::cout << "rendereing" << std::endl;
             render();
-            std::cout << "Running successfully!";
+            std::cout << "---------------------" << std::endl;
+            std::cout << "Running successfully!" << std::endl;
+            std::cout << "---------------------" << std::endl;
 
             run_clock.restart();
         }
@@ -161,20 +163,35 @@ void Game::render() {
     map.draw(gamewindow);
 
     // Render enemies
+    int i = rand();
+    std::cout << "drawing" << std::endl;
     for (auto& enemy : enemies) {
         // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
+        //std::cout << "drawing enemy " << i << std::endl;
+        std::cout << i << std::endl;
         enemy.draw(gamewindow);
+        i += 1;
     }
+    std::cout << "complete" << std::endl;
 
     // Render towers
+    //std::cout << "begin draw tower " << i << std::endl;
     for (auto& tower : towers) {
         // Example: Render tower sprite at tower.getXPos(), tower.getYPos()
+        //std::cout << "drawing towwer " << i << std::endl;
         tower.draw(gamewindow);
     }
 
     // Render UI elements (score, health, etc.)
     // Example: Render player score and health at the top of the window
-    
+
+    sf::CircleShape enemySprite(15.f);
+    //enemySprite.setFillColor(sf::Color::Red);
+    //sf::Sprite enemySprite;
+    //enemySprite.setTexture(texture);
+    //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
+    //enemySprite.setPosition(0.f, 0.f);
+    //gamewindow.draw(enemySprite);    
 
     gamewindow.display();
 }

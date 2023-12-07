@@ -18,7 +18,7 @@ class PlantEnemy : public Enemy {
     //PlantEnemy(Game* game, std::queue<Checkpoint> checkpoints, float x, float y);
     PlantEnemy(Game* game, float x, float y);
 
-    void draw(sf::RenderWindow& window) {
+    void draw(sf::RenderWindow& window) override {
         sf::Texture texture;
 
         if(!texture.loadFromFile("")) {
@@ -26,11 +26,14 @@ class PlantEnemy : public Enemy {
             return;
         }
 
-        sf::Sprite enemySprite;
-        enemySprite.setTexture(texture);
-        enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
+        sf::CircleShape enemySprite(15.f);
+        enemySprite.setFillColor(sf::Color::Red);
+        //sf::Sprite enemySprite;
+        //enemySprite.setTexture(texture);
+        //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
         enemySprite.setPosition(xPos_, yPos_);
         window.draw(enemySprite);
+        std::cout << "drawingddd" << rand() << std::endl;
     }
 };
 
