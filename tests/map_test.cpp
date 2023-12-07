@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "map/map.cpp"
+#include "map/map.hpp"
 
 int main() {
     const int gridSize = 32;
