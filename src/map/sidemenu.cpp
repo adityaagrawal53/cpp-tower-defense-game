@@ -6,12 +6,12 @@ SideMenu::SideMenu(int windowWidth, int windowHeight, int menuWidth) {
     menuBackground.setFillColor(sf::Color(200, 200, 200));
     menuBackground.setPosition(windowWidth - menuWidth, 0);
 
-    font.loadFromFile("arial.ttf"); // Replace "font.ttf" with the path to your font file
+    font.loadFromFile("arial.ttf"); 
     towerText.setFont(font);
     towerText.setCharacterSize(20);
     towerText.setFillColor(sf::Color::Black);
 
-    selectedTower = -1; // No tower selected initially
+    selectedTower = -1; // no tower selected initially
 }
 
 void SideMenu::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
