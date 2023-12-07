@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "map/map.hpp"
-#include "sidemenu.hpp"
+#include "map/sidemenu.hpp"
 
 int main() {
     const int gridSize = 32;
@@ -8,7 +8,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(windowSize + 200, windowSize), "Tower Defense Grid"); // Increased window width
 
-    std::vector<std::string> backgroundFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
+    std::vector<std::string> backgroundFiles = {"map/default/background1.jpg", "map/default/background2.png", "map/default/background3.jpg"};
     int selectedBackgroundIndex = 1; // Change this index to select a different background
 
     GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
