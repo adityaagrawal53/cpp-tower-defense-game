@@ -39,7 +39,7 @@ int main() {
             // Start button pressed
             // Add code to start the game or transition to the next screen
             // For testing purposes, let's print a message
-            std::cout << "Start button pressed!\n";
+            std::cout << "Start button pressed!\n" << std::endl;
             std::vector<std::string> backgroundFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
             int selectedBackgroundIndex = 1; // Change this index to select a different background
 
@@ -49,6 +49,7 @@ int main() {
             GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
             grid.loadMap("map/default/map.txt");
+            std::cout << "does this work?" << std::endl;
             Game game(grid);
         } else if (result == 2) {
             // Quit button pressed

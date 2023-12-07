@@ -12,7 +12,7 @@ class Game {
 public:
     Game(const GridMap& initialMap);
 
-    void createEnemy(const std::string& type);
+    Enemy createEnemy(const char type);
 
     // Game initialization
     void initialize();
@@ -43,7 +43,7 @@ public:
     std::vector<std::string> backgroundImageFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
 
 private:
-    sf::RenderWindow window;
+    sf::RenderWindow gamewindow;
     GridMap map;
 
     sf::Clock clock;

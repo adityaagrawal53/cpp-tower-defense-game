@@ -67,9 +67,10 @@ std::vector<Enemy> Game::readEnemiesFromFile(const std::string& filename) {
         return enemies;
     }
 
-    std::string line;
-    while (std::getline(inputFile, line)) { 
-        this->createEnemy(line);
+    char enemyType;
+    while (inputFile >> enemyType) {
+        std::cout << "creating enemy: " << enemyType << std::endl;
+        enemies.push_back(this->createEnemy(enemyType));
     }
 
     inputFile.close();
@@ -86,7 +87,7 @@ void Game::loadEnemies(int roundNumber) {
     switch (roundNumber) {
         case 1:
             // Load enemies for round 1
-            readEnemiesFromFile("default/enemy1.txt");
+            enemies = readEnemiesFromFile("default/e1.txt");
             break;
 
         case 2:
@@ -99,7 +100,7 @@ void Game::loadEnemies(int roundNumber) {
         default:
             // Handle completion of all rounds (victory)
             // For now, let's close the window
-            window.close();
+            gamewindow.close();
             break;
     }
 }

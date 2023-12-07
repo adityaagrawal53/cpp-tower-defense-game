@@ -10,6 +10,7 @@ GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const
 
     if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < backgroundImageTextures.size()) {
         backgroundImage.setTexture(backgroundImageTextures[selectedBackgroundIndex]);
+        std::cout << "YEAH";
     } else {
         std::cerr << "Invalid selected background index. Defaulting to the first background." << std::endl;
         backgroundImage.setTexture(backgroundImageTextures[0]);

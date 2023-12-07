@@ -11,41 +11,51 @@
 #include "../enemy/enemy-plant.hpp"
 #include "../enemy/enemy-tree.hpp"
 #include "../enemy/enemy-bomb.hpp"
+#include <iostream>
 
 // Game.cpp
 
-Game::Game(const GridMap& initialMap) : window(sf::VideoMode(800, 600), "Tower Defense Game"), map(initialMap) {
+Game::Game(const GridMap& initialMap) : gamewindow(sf::VideoMode(800, 600), "Tower Defense Game"), map(initialMap) {
     // Initialize game variables
+    //gamewindow = sf::Window(sf::VideoMode(712, 512), "Tower Defense Game");
     playerScore = 0;
     currentWave = 1;
     playerMoney = 1000;
     playerHealth = 1000;
-
+    std::cout << "we here" << std::endl; 
     // Initialize game elements
+    std::cout << "we here!!!" << std::endl;
     loadWave(currentWave);
+    std::cout << "Loaded wave successfullyasdfs" << std::endl;  
+    run();
 }
 
-void Game::createEnemy(const std::string& type) {
-    if (type == "p") {        // plant type
-        this->getEnemies().push_back(PlantEnemy(this));
-    } else if (type == "b") { // bomb type
-        this->getEnemies().push_back(BombEnemy(this));
-    } else if (type == "o") { // boss type
+Enemy Game::createEnemy(const char type) {
+    if (type == 'p') {        // plant type
+        std::cout << "plant" << std::endl;
+        return PlantEnemy(this);
+    } else if (type == 'b') { // bomb type
+        return BombEnemy(this);
+    } else if (type == 'o') { // boss type
         //will be implemented later 
-    } else if (type == "f") { // fire type
+    } else if (type == 'f') { // fire type
         //no
-    } else if (type == "g") { // ground type
+    } else if (type == 'g') { // ground type
         //no 
-    } else if (type == "m") { // magic type
+    } else if (type == 'm') { // magic type
         //no
-    } else if (type == "t") { // tree type
-        this->getEnemies().push_back(TreeEnemy(this));
-    } else if (type == "w") { // water type
+    } else if (type == 't') { // tree type
+        std::cout << 'tree' << std::endl;
+        return TreeEnemy(this);
+    } else if (type == 'w') { // water type
         //no
     }
 }
 
 void Game::loadWave(int roundNumber) { 
+    std::cout << "Loaded wave successfully1" << std::endl; 
+    //loadMap("map/default/map2.txt");
+    std::cout << "Loaded wave successfully2" << std::endl; 
     loadEnemies(roundNumber);
     //loadTowers(roundNumber);
     //loadMap (??)
@@ -54,14 +64,14 @@ void Game::loadWave(int roundNumber) {
 
 void Game::run(){
     
-    while (window.isOpen()) {
+    while (gamewindow.isOpen()) {
         /*
         //Handling input
         sf::Event event;
         
-        while (window.pollEvent(event)) {
+        while (gamewindow.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
-                window.close();
+                gamewindow.close();
             }
             if (event.type == sf::Event::MouseButtonPressed) {
                 // Call handleMouseInput for the GridMap instance
@@ -77,6 +87,7 @@ void Game::run(){
         if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
             update();
             render();
+            std::cout << "Running successfully!";
 
             run_clock.restart();
         }
@@ -125,6 +136,7 @@ void Game::update() {
     // Check if the round is completed
     if (enemies.empty()) {
         currentWave++;
+        std::cout << "all enemies destroyed. moving to wave " << currentWave << std::endl;
         loadWave(currentWave);
     }
 
@@ -132,35 +144,35 @@ void Game::update() {
     if (playerHealth <= 0) {
         // Handle game over (display message, reset game, etc.)
         // For now, let's just close the window
-        window.close();
+        gamewindow.close();
     }
 
     update_clock.restart();
 }
 
 void Game::render() {
-    window.clear();
+    gamewindow.clear();
 
     // Render game elements
-    map.draw(window);
+    map.draw(gamewindow);
 
     // Render enemies
     for (auto& enemy : enemies) {
         // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
-        enemy.draw(window);
+        enemy.draw(gamewindow);
     }
 
     // Render towers
     for (auto& tower : towers) {
         // Example: Render tower sprite at tower.getXPos(), tower.getYPos()
-        tower.draw(window);
+        tower.draw(gamewindow);
     }
 
     // Render UI elements (score, health, etc.)
     // Example: Render player score and health at the top of the window
     
 
-    window.display();
+    gamewindow.display();
 }
 
 
