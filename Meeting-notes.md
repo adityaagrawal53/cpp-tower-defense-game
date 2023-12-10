@@ -13,7 +13,7 @@ In each meeting, you are required to discuss:
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -30,7 +30,7 @@ Finish the project plan
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -50,7 +50,7 @@ Project plan
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -68,7 +68,7 @@ Project plan
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -88,7 +88,7 @@ Implement tower and enemy locations.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -110,7 +110,7 @@ Dung: Interactions between Enemy class and Map class, dynamic changes to Maps ac
 **Participants**: 
 1. Aditya Agrawal (unable to come)
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -132,7 +132,7 @@ Dung: Map class fixes.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong (Unable to come, got locked outside his own house because dumbass forgot his keys inside)
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -154,7 +154,7 @@ Dung: Map class fixes.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -176,7 +176,7 @@ Dung: Map improvements.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -198,7 +198,7 @@ Dung: General bug fixes.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -220,7 +220,7 @@ Dung: General bug fixes.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
@@ -242,7 +242,7 @@ Dung: DEMO.
 **Participants**: 
 1. Aditya Agrawal
 2. Xiong Xiong
-3. Quang Dong Nguyen
+3. Quang Dung Nguyen
 4. Khoi Nguyen Hoang
 
 ## Summary of works
