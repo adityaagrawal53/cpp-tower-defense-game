@@ -4,10 +4,7 @@
 #include "game_loading_functions.cpp"
 
 #include "../enemy/enemy-bomb.hpp"
-#include "../enemy/enemy-fire.hpp"
 #include "../enemy/enemy-boss.hpp"
-//#include "../enemy/enemy-ground.cpp"
-//#include "../enemy/enemy-magic.cpp"
 #include "../enemy/enemy-plant.hpp"
 #include "../enemy/enemy-tree.hpp"
 #include "../enemy/enemy-bomb.hpp"
