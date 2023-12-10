@@ -10,6 +10,8 @@ public:
     int handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
     void draw(sf::RenderWindow& window);
     void setPosition(sf::Vector2f position);
+    sf::Texture buttonTexture;
+    sf::Sprite button;
 
 
 private:
@@ -17,8 +19,7 @@ private:
     sf::Font font;
     sf::Text towerText;
 
-    sf::Texture buttonTexture;
-    sf::Sprite button;
+
 };
 
 #endif // SIDEMENU_HPP
