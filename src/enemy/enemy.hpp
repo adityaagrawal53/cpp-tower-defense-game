@@ -16,23 +16,12 @@ class Tower;
 #include "../tower/tower.hpp"
 
 /**
- * \brief class Checkpoint determines how the enemy should move
- * 
- * \param x, y coordinates of checkpoint
-*/
-struct Checkpoint {
-    double x;
-    double y;
-};
-
-/**
  * \brief class Enemy is an abstract class that describes an enemy
  * 
- * Each `Enemy` has an amount of HP(int), movement speed(double), and attack(int).
- * When destroyed, they give a
+ * Each `Enemy` has an amount of HP(int), movement speed(double), attack(int), and range(double).
+ * When destroyed, they give a certain amount of coins.
  * 
  * They move from checkpoint(pair<int, int>) to checkpoint in a straight line until they reach the exit.
- * 
 */
 
 class Enemy {
@@ -53,14 +42,7 @@ class Enemy {
      * \param coins how many coins enemy gives when destroyed
      * \param range detection radius of Enemy
     */
-    //Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints);
     Enemy(Game* game, int HP, float speed, int ATK, int coins, double range);
-
-    //Enemy(Game* game, const std::string& type);
-    /**
-     * \brief Virtual destroyer
-    */
-    //virtual ~Enemy() {};
 
     /**
      * \brief Sets position of Enemy to (x, y)

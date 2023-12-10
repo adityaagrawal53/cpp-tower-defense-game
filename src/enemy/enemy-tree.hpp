@@ -21,11 +21,13 @@ class TreeEnemy : public Enemy {
             return;
         }
 
-        //sf::CircleShape enemySprite(15.f);
-        //enemySprite.setFillColor(sf::Color::Green);
         sf::Sprite enemySprite;
+
+        //Arbitrarily scaled to 0.2 to fit in map
         enemySprite.setTexture(texture);
         enemySprite.setScale(0.2, 0.2);
+
+        //Center sprite
         enemySprite.setOrigin(enemySprite.getGlobalBounds().width / 2, enemySprite.getGlobalBounds().height / 2);
         enemySprite.setPosition(xPos_, yPos_);
         window.draw(enemySprite);

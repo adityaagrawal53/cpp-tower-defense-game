@@ -1,40 +1,10 @@
 #include "enemy.hpp"
 
-/*Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range, std::queue<std::pair<int, int>> checkpoints): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(checkpoints) {
-    //xPos_ = checkpoints.front().x;
-    //yPos_ = checkpoints.front().y;
-    setPosition(checkpoints_.front().first, checkpoints_.front().second);
-}*/
-
 Enemy::Enemy(Game* game, int HP, float speed, int ATK, int coins, double range): game_(game), HP_(HP), speed_(speed), ATK_(ATK), coins_(coins), range_(range), checkpoints_(game->getCheckpoints()) {
-    //xPos_ = checkpoints.front().x;
-    //yPos_ = checkpoints.front().y;
+    //Initial position is first checkpoint
     setPosition(checkpoints_.front().first, checkpoints_.front().second);
 }
 
-/*
-Enemy::Enemy(Game* game, const std::string& type) {
-    if (type == "p") {        // plant type
-        PlantEnemy(*game);
-    } else if (type == "b") { // bomb type
-        BombEnemy(*game);
-    } else if (type == "o") { // boss type
-        //will be implemented later 
-    } else if (type == "f") { // fire type
-        //no
-    } else if (type == "g") { // ground type
-        //no 
-    } else if (type == "m") { // magic type
-        //no
-    } else if (type == "t") { // tree type
-        TreeEnemy(*game);
-    } else if (type == "w") { // water type
-        //no
-    } else { PlantEnemy(*game); }
-
-    setPosition(checkpoints_.front().first, checkpoints_.front().second);
-}
-*/
 void Enemy::setPosition(int x, int y) {
     xPos_ = x;
     yPos_ = y;
@@ -131,6 +101,7 @@ std::vector<Tower*> Enemy::getTowersInRange() {
 }
 
 void Enemy::attack() {
+    //Executes when there is a tower in range
     if(!getTowersInRange().empty()) {
         Tower* tar = getTowersInRange().front();
         tar->setHealth(tar->getHealth() - ATK_);
