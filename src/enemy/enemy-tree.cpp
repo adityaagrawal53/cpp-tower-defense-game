@@ -1,6 +1,6 @@
 #include "enemy-tree.hpp"
 
-TreeEnemy::TreeEnemy(Game* game): Enemy(game, 100, 0.3, 5, 30, 1) { }
+TreeEnemy::TreeEnemy(Game* game): Enemy(game, 100, 3.f, 5, 30, 1) { }
 
 void TreeEnemy::die() {
     game_->getEnemies().push_back(new PlantEnemy(game_, getXPos(), getYPos()));

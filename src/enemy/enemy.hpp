@@ -124,6 +124,14 @@ class Enemy {
     bool isDead() const;
 
     /**
+     * \brief Checks if Enemy has reached its destination. If it did, remove 1 Life Point seal.
+     * 
+     * \return true if Enemy reached the end
+     *         false otherwise
+    */
+    bool reachedDestination() const;
+
+    /**
      * \brief Returns the Enemy's current Checkpoint list.
      * 
      * \return Enemy's Checkpoint list.
