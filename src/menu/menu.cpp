@@ -13,6 +13,7 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
         // Handle texture loading error for quit button
     }
 
+    //set the backgorund picture and buttons textures
     background.setTexture(backgroundTexture);
     startButton.setTexture(startTexture);
     startButton.setPosition(window.getSize().x / 2 - startButton.getGlobalBounds().width / 2, 150);
@@ -20,14 +21,16 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
     quitButton.setTexture(quitTexture);
     quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width / 2, 250);
 
-    // Set initial scaling factors
-    startButtonScale = 0.5f; 
-    quitButtonScale = 0.5f;  
+    // Scale the buttons to fit on game window
+    startButtonScale = 0.25f; 
+    quitButtonScale = 0.25f;  
 
     startButton.setScale(startButtonScale, startButtonScale);
     quitButton.setScale(quitButtonScale, quitButtonScale);
+    background.setScale(0.25f, 0.25f);
 }
 
+//draw and display the main menu
 void MainMenu::draw() {
     window.clear();
 
@@ -41,6 +44,8 @@ void MainMenu::draw() {
     window.display();
 }
 
+
+//Handles user input
 int MainMenu::handleInput() {
     sf::Event event;
     while (window.pollEvent(event)) {

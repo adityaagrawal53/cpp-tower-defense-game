@@ -11,7 +11,8 @@ SideMenu::SideMenu(int windowWidth, int windowHeight, int menuWidth) {
     towerText.setCharacterSize(20);
     towerText.setFillColor(sf::Color::Black);
 
-    selectedTower = -1; // no tower selected initially
+    button.setTexture(buttonTexture);
+
 }
 
 void SideMenu::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
@@ -20,7 +21,7 @@ void SideMenu::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
         // Check if the mouse click is within the side menu
         if (mouseEvent.x > menuBackground.getPosition().x && mouseEvent.y < menuBackground.getSize().y) {
             // Calculate the tower index based on mouse position or any other method
-            // Update selectedTower accordingly
+        
         }
     }
 }
@@ -34,10 +35,9 @@ void SideMenu::draw(sf::RenderWindow& window) {
     window.draw(towerText);
 }
 
+//set the side menu to the right of the map
 void SideMenu::setPosition(sf::Vector2f position) {
     menuBackground.setPosition(position);
 }
 
-int SideMenu::getSelectedTower() const {
-    return selectedTower;
-}
+
