@@ -27,7 +27,7 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
 
     startButton.setScale(startButtonScale, startButtonScale);
     quitButton.setScale(quitButtonScale, quitButtonScale);
-    background.setScale(0.25f, 0.25f);
+    background.setScale(0.5f, 0.5f);
 }
 
 //draw and display the main menu
