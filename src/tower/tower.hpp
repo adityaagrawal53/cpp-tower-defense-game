@@ -14,6 +14,7 @@ class Enemy;
 #include "../enemy/enemy.hpp"
 
 struct TowerPos {
+    //Postition for Tower, keeps track of x and y coordinates on the map
     double x;
     double y;
 };

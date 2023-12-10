@@ -1,7 +1,17 @@
 #include "tower.hpp"
 #include <iostream>
-#include <chrono>
-#include <thread>
+#include <chrono>   //C++ timer utilities to keep track of time in DoT (Damage over Time)
+#include <thread>   //Allows for pausing of the Tower thread in DoT implementation
+
+/*
+The basic tower class, provides a template for subclasses to fill in stats
+The current 5 subclasses include Plant, Water, Fire, Ground, and Magic
+Plant is the basic tower
+Water is the long range tower
+Fire has DoT
+Ground is purely defensive with high HP and no attack
+Magic attacks all enemies within range
+*/
 
 Tower::Tower(Game* game, std::string name, int damage, int hp, double range, int cost, int damageOverTime, TowerPos position): game(game), name(name), damage(damage), hp(hp), range(range), cost(cost), damageOverTime(damageOverTime), position(position) {}
 
@@ -98,18 +108,18 @@ void Tower::attack() {
     // Get all enemies in range
     std::vector<Enemy> enemiesInRange = getEnemiesInRange();
 
-    // Apply immediate damage
+    // Apply immediate damage to the closest enemy
     if (!enemiesInRange.empty()) {
         Enemy target = enemiesInRange.front();
         target.setHP(target.getHP() - damage);
     }
 
-    // Apply damage over time
+    // Apply DoT if present
     for (auto& enemy : enemiesInRange) {
         int totalTicks = 5; // Dot ticks for 5 seconds
         int tickDamage = damageOverTime; // Adjust the damage per tick as needed
 
-        // Apply damage over time at 1 tick per second
+        // Apply DoT at 1 tick per second
         for (int i = 0; i < totalTicks; ++i) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
             enemy.setHP(enemy.getHP() - tickDamage);

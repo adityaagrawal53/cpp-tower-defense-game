@@ -6,6 +6,7 @@
 
 class Ground : public Tower {
 public:
+    //Tower with high HP but no attack parameters. Purely defensive.
     Ground(std::string name = "Ground", int damage = 0, int hp = 500, double range = 0.0, int cost = 15, int damageOverTime = 0);
 
     void draw(sf::RenderWindow& window) {
