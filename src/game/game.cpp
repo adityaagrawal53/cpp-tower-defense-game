@@ -4,7 +4,7 @@
 #include "game_loading_functions.cpp"
 
 #include "../enemy/enemy-bomb.hpp"
-#include "../enemy/enemy-boss.hpp"
+#include "../enemy/enemy-boss.cpp"
 #include "../enemy/enemy-plant.hpp"
 #include "../enemy/enemy-tree.hpp"
 #include "../enemy/enemy-bomb.hpp"
@@ -33,7 +33,7 @@ Enemy* Game::createEnemy(const char type) {
         return new BombEnemy(this);
     } else if (type == 'o') { 
         // boss type
-        //return new BossEnemy(this);
+        return new BossEnemy(this);
     } else if (type == 't') { 
         // tree type
         return new TreeEnemy(this);

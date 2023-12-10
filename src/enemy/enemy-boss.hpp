@@ -7,6 +7,11 @@ class BossEnemy : public Enemy {
   public:
     BossEnemy(Game* game);
 
+    /**
+     * \brief Instantly destroy a Tower
+    */
+    virtual void attack();
+
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
 
