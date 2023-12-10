@@ -4,10 +4,12 @@
 #include <string>
 #include "tower.hpp"
 
+//The tower that applies moderate damage to all enemies present within its range. Slight increase in range and double the HP compared to the basic tower but with much higher cost.
 class Magic : public Tower {
 public:
     Magic(std::string name = "Magic", int damage = 10, int hp = 50, double range = 3.0, int cost = 50, int damageOverTime = 0);
 
+    //This tower does not use the attack method specified in the base Tower class because it deals damage to all enemies within range, thus an override is used for a new attack method.
     void attack() override {
 
         std::vector<Enemy> enemiesInRange = getEnemiesInRange();

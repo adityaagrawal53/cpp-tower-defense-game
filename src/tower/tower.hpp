@@ -14,6 +14,7 @@ class Enemy;
 #include "../enemy/enemy.hpp"
 
 struct TowerPos {
+    //Postition for Tower, keeps track of x and y coordinates on the map
     double x;
     double y;
 };
@@ -29,7 +30,7 @@ public:
     TowerPos getPosition() const;
     void setPosition(TowerPos position);
 
-    // Methods to set tower stats
+    // Methods to set and get individual tower stats
     std::string getName() const;
     void setName(std::string name);
     int getDamage() const;

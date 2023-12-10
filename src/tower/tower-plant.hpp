@@ -6,6 +6,7 @@
 
 class Plant : public Tower {
 public:
+    //The basic tower for our game, low cost, medium damage, medium range, and no DoT
     Plant(std::string name = "Plant", int damage = 10, int hp = 25, double range = 2.0, int cost = 10, int damageOverTime = 0);
 
     void draw(sf::RenderWindow& window) {
