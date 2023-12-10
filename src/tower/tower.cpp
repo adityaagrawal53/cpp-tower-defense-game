@@ -115,7 +115,7 @@ void Tower::attack() {
     }
 
     // Apply DoT if present
-    for (auto& enemy : enemiesInRange) {
+    for (auto& enemy : enemiesInRange.front()) {
         int totalTicks = 5; // Dot ticks for 5 seconds
         int tickDamage = damageOverTime; // Adjust the damage per tick as needed
 
