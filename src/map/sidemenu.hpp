@@ -15,7 +15,6 @@ private:
     sf::RectangleShape menuBackground;
     sf::Font font;
     sf::Text towerText;
-    int selectedTower;
 
     sf::Texture buttonTexture;
     sf::Sprite button;

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 
+
+//Map is a 16 by 16 grid
 GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const std::vector<std::string>& backgroundImageFiles, int selectedBackgroundIndex)
     : gridSize(gridSize), windowSize(windowSize) {
     loadMap(mapFile);
@@ -10,16 +12,18 @@ GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const
 
     if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < backgroundImageTextures.size()) {
         backgroundImage.setTexture(backgroundImageTextures[selectedBackgroundIndex]);
+        std::cout << "YEAH";
     } else {
         std::cerr << "Invalid selected background index. Defaulting to the first background." << std::endl;
         backgroundImage.setTexture(backgroundImageTextures[0]);
     }
 }
 
-
+//Map layout and enemy path reading (text file)
 void GridMap::loadMap(const std::string& mapFile) {
     std::ifstream file(mapFile);
 
+    //Handles file reading error
     if (!file.is_open()) {
         std::cerr << "Error opening map file: " << mapFile << std::endl;
         return;
@@ -28,12 +32,13 @@ void GridMap::loadMap(const std::string& mapFile) {
     std::string line;
     bool readingCheckpoints = false; 
 
+
     while (std::getline(file, line)) {
         if (line.empty()) { 
             continue;
         }
 
-
+        //checkpoints on the map tell enemy where to go
         if (line.find("[CHECKPOINTS]") != std::string::npos){ 
             readingCheckpoints = true;
             continue;   
@@ -44,10 +49,11 @@ void GridMap::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
-                checkpoints.push(std::make_pair(x*32, y*32));
+                checkpoints.push(std::make_pair(x, y));
             }
 
         }
+        //map layout in recorded into a 2d vector
         else{
             std::vector<int> row;
             std::istringstream isstring(line);
@@ -69,7 +75,7 @@ void GridMap::loadMap(const std::string& mapFile) {
     file.close();
 }
 
-
+//load background texture
 void GridMap::loadBackgrounds(const std::vector<std::string>& backgroundImageFiles) {
     for (const auto& file : backgroundImageFiles) {
         sf::Texture texture;
@@ -98,6 +104,8 @@ void GridMap::draw(sf::RenderWindow& window) {
     }
 }
 
+
+
 void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
     if (mouseEvent.button == sf::Mouse::Left) {
         int columnIndex = mouseEvent.x / gridSize;
@@ -105,7 +113,7 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
 
         // Check if the indices are within the valid range
         if (rowIndex >= 0 && rowIndex < mapData.size() && columnIndex >= 0 && columnIndex < mapData[0].size()) {
-            // Check if the value is 1 before updating
+            // Check if the value is 1 before updating, for 1 represent the tower slot
             if (mapData[rowIndex][columnIndex] == 1) {
                 // Change the value to represent a different image index
                 // For example, set it to 2 for the third image in backgroundImageTextures
@@ -119,6 +127,8 @@ void GridMap::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
     }
 }
 
+
+//map's position is set in order generate the side menu beside it 
 void GridMap::setPosition(sf::Vector2f position) {
     backgroundImage.setPosition(position);
 }
