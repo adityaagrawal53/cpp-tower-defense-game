@@ -21,9 +21,8 @@ SideMenu::SideMenu(int windowWidth, int windowHeight, int menuWidth) {
     button.setPosition(
         menuBackground.getPosition().x + 10,  // Adjust the X position as needed
         menuBackground.getPosition().y + 50   // Adjust the Y position as needed
-    );
+    );    
 }
-
 
 int SideMenu::handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent) {
     // Handle mouse input for tower selection

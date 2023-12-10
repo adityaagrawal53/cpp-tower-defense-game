@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "map/map.cpp"
-#include "map/sidemenu.cpp"
+#include "map/sidemenu.hpp"
 
 int main() {
     const int gridSize = 32;
@@ -19,6 +19,8 @@ int main() {
     SideMenu sideMenu(200, windowSize, 200);
     sideMenu.setPosition(sf::Vector2f(windowSize, 0)); // Set position next to the map
     sideMenu.buttonTexture.loadFromFile("map/default/sidemenu.png");
+    
+    sideMenu.button.setScale(0.5f, 0.5f);
 
     while (window.isOpen()) {
         sf::Event event;
