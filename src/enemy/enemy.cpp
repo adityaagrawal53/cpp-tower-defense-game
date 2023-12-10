@@ -61,10 +61,6 @@ int Enemy::getYPos() const {
 
 void Enemy::move() {
     if(!checkpoints_.empty()) {
-        std::cout << "checkpoint " << checkpoints_.front().first << " " << checkpoints_.front().second << std::endl;
-    }
-    
-    if(!checkpoints_.empty()) {
         float xDist = checkpoints_.front().first - xPos_;
         float yDist = checkpoints_.front().second - yPos_;
 
@@ -147,6 +143,10 @@ void Enemy::die() {
 
 bool Enemy::isDead() const {
     return dead;
+}
+
+bool Enemy::reachedDestination() const {
+    return checkpoints_.empty();
 }
 
 std::queue<std::pair<int, int>> Enemy::getCheckpoints() const {

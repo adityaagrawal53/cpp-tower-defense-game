@@ -95,6 +95,7 @@ void Game::run(){
         }
         update();
         render();
+        std::cout << "HP = " << playerHealth << std::endl;
     }
 }
 
@@ -120,11 +121,34 @@ void Game::handleTowerEnemyInteractions() {
         run_clock.restart();
     }
 
-    // Remove all enemies and towers that are dead
+    //Remove all enemies that are dead or reached the end
+    if(!currentEnemies.empty()) {
+        std::cout << "---------------" << std::endl;
+        for(auto e = currentEnemies.begin(); e != currentEnemies.end();) {
+            std::cout << "--next enemy--" << std::endl;
+            std::cout << "checking if dead" << std::endl;
+            if((*e)->isDead()) {
+                e = currentEnemies.erase(e);
+            } else if((*e)->reachedDestination()) {
+                //Enemy reached the end, lose 1 LP
+                std::cout << "reached destination" << std::endl;
+                e = currentEnemies.erase(e);
+                std::cout << "removing" << std::endl;
+                playerHealth -= 1;
+            }
+            std::cout << "dead" << std::endl;
+            ++e;
+            std::cout << "increnemt" << std::endl;
+        }
+        std::cout << "---------------" << std::endl;
+    }
+
+    // Remove all towers that are dead
+    /*
     enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
                                  [](const Enemy* enemy) { return enemy->isDead(); }),
                   enemies.end());
-
+    */
     towers.erase(std::remove_if(towers.begin(), towers.end(),
                                  [](const Tower* tower) { return tower->getHealth() <= 0; }),
                   towers.end());
