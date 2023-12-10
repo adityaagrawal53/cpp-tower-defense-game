@@ -1,5 +1,4 @@
-// MainMenu.cpp
-#include "MainMenu.h"
+#include "menu.hpp"
 
 MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
     if (!backgroundTexture.loadFromFile("menu_background.jpg")) {
