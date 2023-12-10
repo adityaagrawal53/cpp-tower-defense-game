@@ -1,8 +1,11 @@
 # Source content
 # Enemies
 **enemy.hpp/enemy.cpp:** Enemies to be destroyed using towers, they move from checkpoint to checkpoint. If an enemy reaches the end of its path, the player loses 1 LP.
+
 **enemy-plant.hpp/enemy-plant.cpp:** Basic enemy. Deals damage to nearby towers.
+
 **enemy-tree.hpp/enemy.tree.cpp:** Spawns 3 Plant enemies when destroyed.
+
 **enemy-bomb.hpp/enemy-bomb.cpp:** Attacks deal splash damage, damaging nearby towers.
 
 # Towers
