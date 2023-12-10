@@ -30,7 +30,7 @@ public:
     TowerPos getPosition() const;
     void setPosition(TowerPos position);
 
-    // Methods to set tower stats
+    // Methods to set and get individual tower stats
     std::string getName() const;
     void setName(std::string name);
     int getDamage() const;
