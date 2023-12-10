@@ -8,6 +8,8 @@
 
 **enemy-bomb.hpp/enemy-bomb.cpp:** Attacks deal splash damage, damaging nearby towers.
 
+**enemy-boss.hpp/enemy-boss.cpp:** Big enemy with lots of health and deals massive damage.
+
 # Towers
 **tower.hpp/tower.cpp:** Towers can attack and destroy nearby enemies. They can be manually placed down by the player.
 
