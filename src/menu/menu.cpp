@@ -1,15 +1,15 @@
 #include "menu.hpp"
 
 MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
-    if (!backgroundTexture.loadFromFile("menupic.jpg")) {
+    if (!backgroundTexture.loadFromFile("menu/pic/menupic.jpg")) {
         // Handle texture loading error for background
     }
 
-    if (!startTexture.loadFromFile("start.png")) {
+    if (!startTexture.loadFromFile("menu/pic/start.png")) {
         // Handle texture loading error for start button
     }
 
-    if (!quitTexture.loadFromFile("quit.png")) {
+    if (!quitTexture.loadFromFile("menu/pic/quit.png")) {
         // Handle texture loading error for quit button
     }
 

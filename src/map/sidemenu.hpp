@@ -16,6 +16,9 @@ private:
     sf::Font font;
     sf::Text towerText;
     int selectedTower;
+
+    sf::Texture buttonTexture;
+    sf::Sprite button;
 };
 
 #endif // SIDEMENU_HPP
