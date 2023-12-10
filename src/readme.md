@@ -1,8 +1,9 @@
 # Source content
-This folder should contain only hpp/cpp files of your implementation. 
-You can also place hpp files in a separate directory `include `.
 
-You can create a summary of files here. It might be useful to describe 
-file relations, and brief summary of their content.
+**enemy.hpp/enemy.cpp:** Enemies to be destroyed using towers, they move from checkpoint to checkpoint. If an enemy reaches the end of its path, the player loses 1 LP.
 
-**enemy.cpp:**
+**tower.hpp/tower.cpp:** Towers can attack and destroy nearby enemies. They can be manually placed down by the player.
+
+**map.hpp/map.cpp:** A grid-based map. Towers can be placed on tiles and enemies move on a predetermined path, depending on map.
+
+**game.hpp/game.cpp/game_loading_functions.cpp:** Handles all interactions between towers and enemies.
