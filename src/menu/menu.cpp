@@ -1,39 +1,38 @@
-
-
 #include "menu.hpp"
-#include <iostream>
 
 MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
-    // Load background image
-    if (!backgroundTexture.loadFromFile("menu/pic/menupic.jpg")) {
-        std::cout << "Menu pic loading error";
-    }
-    backgroundSprite.setTexture(backgroundTexture);
-
-    // Load start button image
-    if (!startTexture.loadFromFile("menu/pic/start.png")) {
-        std::cout <<"start pic loading error";
+    if (!backgroundTexture.loadFromFile("menupic.jpg")) {
+        // Handle texture loading error for background
     }
 
-    // load quit button image
-    if (!quitTexture.loadFromFile("menu/pic/quit.png")){
-        std::cout <<"quit pic loading error";
+    if (!startTexture.loadFromFile("start.png")) {
+        // Handle texture loading error for start button
     }
 
+    if (!quitTexture.loadFromFile("quit.png")) {
+        // Handle texture loading error for quit button
+    }
 
+    background.setTexture(backgroundTexture);
     startButton.setTexture(startTexture);
-    startButton.setPosition(window.getSize().x / 2 - startButton.getGlobalBounds().width / 2, 250);
+    startButton.setPosition(window.getSize().x / 2 - startButton.getGlobalBounds().width / 2, 150);
 
     quitButton.setTexture(quitTexture);
-    quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width /2, 400 );
+    quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width / 2, 250);
 
+    // Set initial scaling factors
+    startButtonScale = 0.5f; 
+    quitButtonScale = 0.5f;  
+
+    startButton.setScale(startButtonScale, startButtonScale);
+    quitButton.setScale(quitButtonScale, quitButtonScale);
 }
 
 void MainMenu::draw() {
     window.clear();
 
     // Draw background first
-    window.draw(backgroundSprite);
+    window.draw(background);
 
     // Draw buttons on top of the background
     window.draw(startButton);
@@ -50,9 +49,9 @@ int MainMenu::handleInput() {
         } else if (event.type == sf::Event::MouseButtonPressed) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 if (startButton.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
-                    return 1; // Start button pressed --> open game window in main
+                    return 1; // Start button pressed
                 } else if (quitButton.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
-                    return 2; 
+                    return 2; // Quit button pressed
                 }
             }
         }

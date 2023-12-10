@@ -1,5 +1,4 @@
 
-
 #include <SFML/Graphics.hpp>
 
 class MainMenu {
@@ -9,14 +8,14 @@ public:
     int handleInput();
 private:
     sf::RenderWindow& window;
-
-    // Background
     sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
-
-    // Buttons
+    sf::Sprite background;
     sf::Texture startTexture;
     sf::Sprite startButton;
     sf::Texture quitTexture;
     sf::Sprite quitButton;
+
+
+    float startButtonScale;
+    float quitButtonScale;
 };
