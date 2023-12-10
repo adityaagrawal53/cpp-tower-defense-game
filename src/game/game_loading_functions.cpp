@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
+/*
 void Game::loadMap(const std::string& mapFile) {
     std::ifstream file(mapFile);
 
@@ -34,7 +34,7 @@ void Game::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
-                map.checkpoints.push(std::make_pair(x*32, y*32));
+                map.checkpoints.push(std::make_pair(x, y));
             }
 
         }
@@ -64,7 +64,7 @@ void Game::loadMap(const std::string& mapFile) {
     map.loadBackgrounds(backgroundImageFiles);
 }
 
-
+*/
 
 std::vector<Enemy*> Game::readEnemiesFromFile(const std::string& filename) {
     std::ifstream inputFile(filename);

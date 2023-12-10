@@ -33,7 +33,7 @@ Enemy* Game::createEnemy(const char type) {
         return new BombEnemy(this);
     } else if (type == 'o') { 
         // boss type
-        return new BossEnemy(this);
+        //return new BossEnemy(this);
     } else if (type == 't') { 
         // tree type
         return new TreeEnemy(this);
@@ -48,12 +48,12 @@ void Game::loadWave(int roundNumber) {
 void Game::run(){
     
     auto enemyCount = enemies.size();
+    std::cout << enemyCount << std::endl;
     int i = 0;
 
     while (gamewindow.isOpen()) {
         
         //Spawns enemies once a second
-        std::cout << i << std::endl;
         if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
             if(i < enemyCount) {
                 currentEnemies.push_back(enemies[i]);
@@ -63,7 +63,6 @@ void Game::run(){
         }
         update();
         render();
-        std::cout << "HP = " << playerHealth << std::endl;
     }
 }
 
@@ -91,6 +90,8 @@ void Game::handleTowerEnemyInteractions() {
 
     //Remove all enemies that are dead or reached the end
     if(!currentEnemies.empty()) {
+        std::cout << currentEnemies.size() << std::endl;
+        std::cout << "removing enemy" << std::endl;
         for(auto e = currentEnemies.begin(); e != currentEnemies.end();) {
             if((*e)->isDead()) {
                 e = currentEnemies.erase(e);
