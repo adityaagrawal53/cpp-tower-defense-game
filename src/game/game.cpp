@@ -51,7 +51,7 @@ Enemy* Game::createEnemy(const char type) {
 
 void Game::loadWave(int roundNumber) { 
     std::cout << "Loaded wave successfully1" << std::endl; 
-    //loadMap("map/default/map2.txt");
+    //loadMap("map/default/map.txt");
     std::cout << "Loaded wave successfully2" << std::endl; 
     loadEnemies(roundNumber);
     //loadTowers(roundNumber);
@@ -61,6 +61,9 @@ void Game::loadWave(int roundNumber) {
 
 void Game::run(){
     
+    auto enemyCount = enemies.size();
+    int i = 0;
+
     while (gamewindow.isOpen()) {
         /*
         //Handling input
@@ -80,13 +83,18 @@ void Game::run(){
         }
         map.handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
         */
-        //Updating and rendering map
-        update();
-        render();
+        
+        //Spawns enemies once a second
+        std::cout << i << std::endl;
         if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
-            
+            if(i < enemyCount) {
+                currentEnemies.push_back(enemies[i]);
+                i++;
+            }
             run_clock.restart();
         }
+        update();
+        render();
     }
 }
 
@@ -99,14 +107,17 @@ std::vector<Enemy*>& Game::getEnemies() {
 }
 
 void Game::handleTowerEnemyInteractions() {
-    for (auto enemy : enemies) {
-        // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
-        enemy->attack();
-    }
+    //Attacks once every second
+    if (run_clock.getElapsedTime().asSeconds() >= 1.0) {
+        for (auto enemy : currentEnemies) {
+            enemy->attack();
+        }
 
-    // Render towers
-    for (auto tower : towers) {
-        tower->attack();
+        // Render towers
+        for (auto tower : towers) {
+            tower->attack();
+        }
+        run_clock.restart();
     }
 
     // Remove all enemies and towers that are dead
@@ -123,7 +134,7 @@ void Game::update() {
     // Update game logic, enemy movement, tower attacks, etc.
 
     // Example: Update enemy positions
-    for (auto& enemy : enemies) {
+    for (auto& enemy : currentEnemies) {
         enemy->move();
     }
 
@@ -153,7 +164,7 @@ void Game::render() {
     map.draw(gamewindow);
 
     // Render enemies
-    for (auto& enemy : enemies) {
+    for (auto& enemy : currentEnemies) {
         // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
         //std::cout << "drawing enemy " << i << std::endl;
         enemy->draw(gamewindow);
@@ -169,14 +180,6 @@ void Game::render() {
 
     // Render UI elements (score, health, etc.)
     // Example: Render player score and health at the top of the window
-
-    sf::CircleShape enemySprite(15.f);
-    //enemySprite.setFillColor(sf::Color::Red);
-    //sf::Sprite enemySprite;
-    //enemySprite.setTexture(texture);
-    //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
-    //enemySprite.setPosition(0.f, 0.f);
-    //gamewindow.draw(enemySprite);    
 
     gamewindow.display();
 }

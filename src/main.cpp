@@ -48,7 +48,7 @@ int main() {
 
             GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
-            grid.loadMap("map/default/map.txt");
+            //grid.loadMap("map/default/map.txt");
             Game game(grid);
         } else if (result == 2) {
             // Quit button pressed

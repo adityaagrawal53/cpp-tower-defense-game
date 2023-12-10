@@ -54,6 +54,7 @@ private:
     int currentWave;
     int playerMoney;
     std::vector<Enemy*> enemies;
+    std::vector<Enemy*> currentEnemies = {};
     std::vector<Tower*> towers;
     sf::Clock run_clock;
     sf::Clock game_clock;
