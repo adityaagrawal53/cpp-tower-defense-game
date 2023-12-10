@@ -49,7 +49,6 @@ int main() {
             GridMap grid(gridSize, windowSize, "map/default/map.txt", backgroundFiles, selectedBackgroundIndex);
 
             grid.loadMap("map/default/map.txt");
-            std::cout << "does this work?" << std::endl;
             Game game(grid);
         } else if (result == 2) {
             // Quit button pressed

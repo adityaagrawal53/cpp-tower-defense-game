@@ -20,12 +20,12 @@ class PlantEnemy : public Enemy {
 
     void draw(sf::RenderWindow& window) override {
         sf::Texture texture;
-
+/*
         if(!texture.loadFromFile("")) {
             std::cout << "Could not load PlantEnemy sprite" << std::endl;
             return;
         }
-
+*/
         sf::CircleShape enemySprite(15.f);
         enemySprite.setFillColor(sf::Color::Red);
         //sf::Sprite enemySprite;
@@ -33,7 +33,6 @@ class PlantEnemy : public Enemy {
         //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
         enemySprite.setPosition(xPos_, yPos_);
         window.draw(enemySprite);
-        std::cout << "drawingddd" << rand() << std::endl;
     }
 };
 

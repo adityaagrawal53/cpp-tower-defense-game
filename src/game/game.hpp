@@ -12,7 +12,7 @@ class Game {
 public:
     Game(const GridMap& initialMap);
 
-    Enemy createEnemy(const char type);
+    Enemy* createEnemy(const char type);
 
     // Game initialization
     void initialize();
@@ -20,8 +20,8 @@ public:
     // Main game loop
     void run();
 
-    std::vector<Tower>& getTowers();
-    std::vector<Enemy>& getEnemies();
+    std::vector<Tower*>& getTowers();
+    std::vector<Enemy*>& getEnemies();
 
     int getPlayerHealth() const;
     void setPlayerHealth(int health);
@@ -38,7 +38,7 @@ public:
     GridMap getMap() const;
     std::queue<std::pair<int, int>> getCheckpoints();
 
-    std::vector<Enemy> readEnemiesFromFile(const std::string& filename);
+    std::vector<Enemy*> readEnemiesFromFile(const std::string& filename);
 
     std::vector<std::string> backgroundImageFiles = {"map/default/background1.jpg", "map/default/background2.jpg", "map/default/background3.jpg"};
 
@@ -53,8 +53,8 @@ private:
     int playerScore;
     int currentWave;
     int playerMoney;
-    std::vector<Enemy> enemies;
-    std::vector<Tower> towers;
+    std::vector<Enemy*> enemies;
+    std::vector<Tower*> towers;
     sf::Clock run_clock;
     sf::Clock game_clock;
     sf::Clock update_clock;

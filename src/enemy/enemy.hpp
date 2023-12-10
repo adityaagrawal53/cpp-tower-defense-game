@@ -103,7 +103,7 @@ class Enemy {
      * 
      * \return Vector of Towers.
     */
-    std::vector<Tower> getTowersInRange();
+    std::vector<Tower*> getTowersInRange();
 
     /**
      * \brief Attack a nearby tower(s) (closest Tower by default)
@@ -135,7 +135,7 @@ class Enemy {
      * 
      * \param window Window where Enemy will be drawn 
     */
-    virtual void draw(sf::RenderWindow& window);
+    virtual void draw(sf::RenderWindow& window) = 0;
 
 
   protected:

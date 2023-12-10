@@ -30,6 +30,7 @@ void Game::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
+                std::cout << "x = " << x << " y = " << y << std::endl;
                 map.checkpoints.push(std::make_pair(x, y));
             }
 
@@ -59,7 +60,7 @@ void Game::loadMap(const std::string& mapFile) {
 
 
 
-std::vector<Enemy> Game::readEnemiesFromFile(const std::string& filename) {
+std::vector<Enemy*> Game::readEnemiesFromFile(const std::string& filename) {
     //std::vector<Enemy> enemies;
 
     std::ifstream inputFile(filename);

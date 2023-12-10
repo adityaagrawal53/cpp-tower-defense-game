@@ -44,11 +44,11 @@ public:
     void setDamageOverTime(int damageOverTime);
 
     //Attack implementation
-    std::vector<Enemy> getEnemiesInRange();
+    std::vector<Enemy*> getEnemiesInRange();
     virtual void attack();
 
     //Draw
-    virtual void draw(sf::RenderWindow& window);
+    virtual void draw(sf::RenderWindow& window) = 0;
 
 private:
     std::string name;

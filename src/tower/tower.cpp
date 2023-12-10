@@ -71,12 +71,12 @@ void Tower::setDamageOverTime(int damageOverTime) {
     this->damageOverTime = damageOverTime;
 }
 
-std::vector<Enemy> Tower::getEnemiesInRange() {
-    std::vector<Enemy> inRange = std::vector<Enemy>();
+std::vector<Enemy*> Tower::getEnemiesInRange() {
+    std::vector<Enemy*> inRange = std::vector<Enemy*>();
     for(auto t : game->getEnemies()) {
         //get position of enemy
-        double x = t.getYPos();
-        double y = t.getXPos();
+        double x = t->getYPos();
+        double y = t->getXPos();
         if(abs(x - position.x) <= range && abs(y - position.y) <= range) {
             inRange.push_back(t);
         }
@@ -86,9 +86,9 @@ std::vector<Enemy> Tower::getEnemiesInRange() {
     double xp = position.x;
     double yp = position.y;
     std::sort(inRange.begin(), inRange.end(),
-        [xp, yp](Enemy& t1, Enemy& t2) {
-            double d1 = sqrt(pow(t1.getXPos() - xp, 2) + pow(t1.getYPos() - yp, 2));
-            double d2 = sqrt(pow(t2.getXPos() - xp, 2) + pow(t2.getYPos() - yp, 2));
+        [xp, yp](Enemy* t1, Enemy* t2) {
+            double d1 = sqrt(pow(t1->getXPos() - xp, 2) + pow(t1->getYPos() - yp, 2));
+            double d2 = sqrt(pow(t2->getXPos() - xp, 2) + pow(t2->getYPos() - yp, 2));
             return d1 < d2;
         });
     return inRange;
@@ -96,14 +96,14 @@ std::vector<Enemy> Tower::getEnemiesInRange() {
 
 void Tower::attack() {
     // Get all enemies in range
-    std::vector<Enemy> enemiesInRange = getEnemiesInRange();
+    std::vector<Enemy*> enemiesInRange = getEnemiesInRange();
 
     // Apply immediate damage
     if (!enemiesInRange.empty()) {
-        Enemy target = enemiesInRange.front();
-        target.setHP(target.getHP() - damage);
+        Enemy* target = enemiesInRange.front();
+        target->setHP(target->getHP() - damage);
     }
-
+/*
     // Apply damage over time
     for (auto& enemy : enemiesInRange) {
         int totalTicks = 5; // Dot ticks for 5 seconds
@@ -115,8 +115,5 @@ void Tower::attack() {
             enemy.setHP(enemy.getHP() - tickDamage);
         }
     }
-}
-
-void Tower::draw(sf::RenderWindow& window) {
-
+*/
 }
