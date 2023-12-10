@@ -12,7 +12,7 @@ SideMenu::SideMenu(int windowWidth, int windowHeight, int menuWidth) {
     towerText.setFillColor(sf::Color::Black);
 
     // Load button texture
-    if (!buttonTexture.loadFromFile("button_texture.png")) {
+    if (!buttonTexture.loadFromFile("map/default/sidemenu.png")) {
         // Handle texture loading error
         std::cout <<"Error button texture loading";
     }
