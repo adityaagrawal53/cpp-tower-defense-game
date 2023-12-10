@@ -25,34 +25,23 @@ Game::Game(const GridMap& initialMap) : gamewindow(sf::VideoMode(800, 600), "Tow
 }
 
 Enemy* Game::createEnemy(const char type) {
-    if (type == 'p') {        // plant type
-        std::cout << "plant" << std::endl;
+    if (type == 'p') {        
+        // plant type
         return new PlantEnemy(this);
-    } else if (type == 'b') { // bomb type
+    } else if (type == 'b') { 
+        // bomb type
         return new BombEnemy(this);
-    } else if (type == 'o') { // boss type
-        //will be implemented later 
-    } else if (type == 'f') { // fire type
-        //no
-    } else if (type == 'g') { // ground type
-        //no 
-    } else if (type == 'm') { // magic type
-        //no
-    } else if (type == 't') { // tree type
-        std::cout << 'tree' << std::endl;
+    } else if (type == 'o') { 
+        // boss type
+        return new BossEnemy(this);
+    } else if (type == 't') { 
+        // tree type
         return new TreeEnemy(this);
-    } else if (type == 'w') { // water type
-        //no
     }
 }
 
 void Game::loadWave(int roundNumber) { 
-    std::cout << "Loaded wave successfully1" << std::endl; 
-    //loadMap("map/default/map.txt");
-    std::cout << "Loaded wave successfully2" << std::endl; 
     loadEnemies(roundNumber);
-    //loadTowers(roundNumber);
-    //loadMap (??)
 }
 
 
@@ -62,24 +51,6 @@ void Game::run(){
     int i = 0;
 
     while (gamewindow.isOpen()) {
-        /*
-        //Handling input
-        sf::Event event;
-        
-        while (gamewindow.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                gamewindow.close();
-            }
-            if (event.type == sf::Event::MouseButtonPressed) {
-                // Call handleMouseInput for the GridMap instance
-                grid.handleMouseInput(event.mouseButton);
-
-                // You can also call handleMouseInput for the SideMenu instance if needed
-                sideMenu.handleMouseInput(event.mouseButton);
-            }
-        }
-        map.handleMouseInput(sf::Event::MouseButtonEvent& mouseEvent);
-        */
         
         //Spawns enemies once a second
         std::cout << i << std::endl;
@@ -120,32 +91,19 @@ void Game::handleTowerEnemyInteractions() {
 
     //Remove all enemies that are dead or reached the end
     if(!currentEnemies.empty()) {
-        std::cout << "---------------" << std::endl;
         for(auto e = currentEnemies.begin(); e != currentEnemies.end();) {
-            std::cout << "--next enemy--" << std::endl;
-            std::cout << "checking if dead" << std::endl;
             if((*e)->isDead()) {
                 e = currentEnemies.erase(e);
             } else if((*e)->reachedDestination()) {
                 //Enemy reached the end, lose 1 LP
-                std::cout << "reached destination" << std::endl;
                 e = currentEnemies.erase(e);
-                std::cout << "removing" << std::endl;
                 playerHealth -= 1;
             }
-            std::cout << "dead" << std::endl;
             ++e;
-            std::cout << "increnemt" << std::endl;
         }
-        std::cout << "---------------" << std::endl;
     }
 
     // Remove all towers that are dead
-    /*
-    enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
-                                 [](const Enemy* enemy) { return enemy->isDead(); }),
-                  enemies.end());
-    */
     towers.erase(std::remove_if(towers.begin(), towers.end(),
                                  [](const Tower* tower) { return tower->getHealth() <= 0; }),
                   towers.end());
@@ -154,7 +112,7 @@ void Game::handleTowerEnemyInteractions() {
 void Game::update() {
     // Update game logic, enemy movement, tower attacks, etc.
 
-    // Example: Update enemy positions
+    // Update enemy positions
     for (auto& enemy : currentEnemies) {
         enemy->move();
     }
@@ -187,15 +145,12 @@ void Game::render() {
     // Render enemies
     for (auto& enemy : currentEnemies) {
         // Example: Render enemy sprite at enemy.getXPos(), enemy.getYPos()
-        //std::cout << "drawing enemy " << i << std::endl;
         enemy->draw(gamewindow);
     }
 
     // Render towers
-    //std::cout << "begin draw tower " << i << std::endl;
     for (auto& tower : towers) {
         // Example: Render tower sprite at tower.getXPos(), tower.getYPos()
-        //std::cout << "drawing towwer " << i << std::endl;
         tower->draw(gamewindow);
     }
 
