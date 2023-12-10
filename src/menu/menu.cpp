@@ -1,15 +1,15 @@
 #include "menu.hpp"
 
 MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
-    if (!backgroundTexture.loadFromFile("menu_background.jpg")) {
+    if (!backgroundTexture.loadFromFile("menupic.jpg")) {
         // Handle texture loading error for background
     }
 
-    if (!startTexture.loadFromFile("start_button.png")) {
+    if (!startTexture.loadFromFile("start.png")) {
         // Handle texture loading error for start button
     }
 
-    if (!quitTexture.loadFromFile("quit_button.png")) {
+    if (!quitTexture.loadFromFile("quit.png")) {
         // Handle texture loading error for quit button
     }
 
@@ -21,8 +21,8 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
     quitButton.setPosition(window.getSize().x / 2 - quitButton.getGlobalBounds().width / 2, 250);
 
     // Set initial scaling factors
-    startButtonScale = 0.5f; // Adjust the scale factor as needed
-    quitButtonScale = 0.5f;  // Adjust the scale factor as needed
+    startButtonScale = 0.5f; 
+    quitButtonScale = 0.5f;  
 
     startButton.setScale(startButtonScale, startButtonScale);
     quitButton.setScale(quitButtonScale, quitButtonScale);
