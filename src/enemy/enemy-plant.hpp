@@ -27,7 +27,7 @@ class PlantEnemy : public Enemy {
         }
 */
         sf::CircleShape enemySprite(15.f);
-        enemySprite.setFillColor(sf::Color::Red);
+        enemySprite.setFillColor(sf::Color::Blue);
         //sf::Sprite enemySprite;
         //enemySprite.setTexture(texture);
         //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);

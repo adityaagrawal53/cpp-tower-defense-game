@@ -14,6 +14,8 @@ void Game::loadMap(const std::string& mapFile) {
     std::string line;
     bool readingCheckpoints = false; 
 
+    std::cout << "reading checkpoints" << std::endl;
+
     while (std::getline(file, line)) {
         if (line.empty()) { 
             continue;
@@ -30,8 +32,7 @@ void Game::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
-                std::cout << "x = " << x << " y = " << y << std::endl;
-                map.checkpoints.push(std::make_pair(x, y));
+                map.checkpoints.push(std::make_pair(x*32, y*32));
             }
 
         }
@@ -61,11 +62,8 @@ void Game::loadMap(const std::string& mapFile) {
 
 
 std::vector<Enemy*> Game::readEnemiesFromFile(const std::string& filename) {
-    //std::vector<Enemy> enemies;
-
     std::ifstream inputFile(filename);
     if (!inputFile.is_open()) {
-        std::cout << "closed" << std::endl;
         return enemies;
     }
 
@@ -75,7 +73,6 @@ std::vector<Enemy*> Game::readEnemiesFromFile(const std::string& filename) {
         enemies.push_back(this->createEnemy(enemyType));
     }
 
-    std::cout << "finished reading" << std::endl;
     inputFile.close();
     return enemies;
 }
@@ -91,7 +88,6 @@ void Game::loadEnemies(int roundNumber) {
         case 1:
             // Load enemies for round 1
             enemies = readEnemiesFromFile("game/default/enemy1.txt");
-            std::cout << "enemy size = " << enemies.size() << std::endl;
             break;
 
         case 2:

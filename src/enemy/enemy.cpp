@@ -60,7 +60,9 @@ int Enemy::getYPos() const {
 }
 
 void Enemy::move() {
-    std::cout << "Pos:" << xPos_ << " " << yPos_ << std::endl;
+    if(!checkpoints_.empty()) {
+        std::cout << "checkpoint " << checkpoints_.front().first << " " << checkpoints_.front().second << std::endl;
+    }
     
     if(!checkpoints_.empty()) {
         float xDist = checkpoints_.front().first - xPos_;

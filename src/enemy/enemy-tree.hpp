@@ -15,15 +15,17 @@ class TreeEnemy : public Enemy {
 
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
-
+/*
         if(!texture.loadFromFile("")) {
             std::cout << "Could not load TreeEnemy sprite" << std::endl;
             return;
         }
-
-        sf::Sprite enemySprite;
-        enemySprite.setTexture(texture);
-        enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
+*/
+        sf::CircleShape enemySprite(15.f);
+        enemySprite.setFillColor(sf::Color::Green);
+        //sf::Sprite enemySprite;
+        //enemySprite.setTexture(texture);
+        //enemySprite.setOrigin(enemySprite.getGlobalBounds().width, enemySprite.getGlobalBounds().height);
         enemySprite.setPosition(xPos_, yPos_);
         window.draw(enemySprite);
     }

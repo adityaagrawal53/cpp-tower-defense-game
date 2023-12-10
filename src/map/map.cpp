@@ -10,7 +10,6 @@ GridMap::GridMap(int gridSize, int windowSize, const std::string& mapFile, const
 
     if (selectedBackgroundIndex >= 0 && selectedBackgroundIndex < backgroundImageTextures.size()) {
         backgroundImage.setTexture(backgroundImageTextures[selectedBackgroundIndex]);
-        std::cout << "YEAH";
     } else {
         std::cerr << "Invalid selected background index. Defaulting to the first background." << std::endl;
         backgroundImage.setTexture(backgroundImageTextures[0]);
@@ -45,7 +44,7 @@ void GridMap::loadMap(const std::string& mapFile) {
             int x, y;
             char comma;
             while (isstring >> x >> comma >> y) {
-                checkpoints.push(std::make_pair(x, y));
+                checkpoints.push(std::make_pair(x*32, y*32));
             }
 
         }
