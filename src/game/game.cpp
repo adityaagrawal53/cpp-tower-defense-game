@@ -91,7 +91,6 @@ void Game::handleTowerEnemyInteractions() {
     //Remove all enemies that are dead or reached the end
     if(!currentEnemies.empty()) {
         std::cout << currentEnemies.size() << std::endl;
-        std::cout << "removing enemy" << std::endl;
         for(auto e = currentEnemies.begin(); e != currentEnemies.end();) {
             if((*e)->isDead()) {
                 e = currentEnemies.erase(e);
@@ -123,7 +122,6 @@ void Game::update() {
     // Check if the round is completed
     if (enemies.empty()) {
         currentWave++;
-        std::cout << "all enemies destroyed. moving to wave " << currentWave << std::endl;
         loadWave(currentWave);
     }
 
