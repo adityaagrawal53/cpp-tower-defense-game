@@ -7,6 +7,7 @@ void Game::loadMap(const std::string& mapFile) {
     std::ifstream file(mapFile);
 
     if (!file.is_open()) {
+        // Display an error message if the map file cannot be opened.
         std::cerr << "Error opening map file: " << mapFile << std::endl;
         return;
     }
@@ -14,20 +15,21 @@ void Game::loadMap(const std::string& mapFile) {
     std::string line;
     bool readingCheckpoints = false; 
 
-    std::cout << "reading checkpoints" << std::endl;
-
     while (std::getline(file, line)) {
         if (line.empty()) { 
+            // Skip empty lines in the map file.
             continue;
         }
 
 
         if (line.find("[CHECKPOINTS]") != std::string::npos){ 
+            // Start reading checkpoints when the [CHECKPOINTS] section is encountered.
             readingCheckpoints = true;
             continue;   
         }
 
         if (readingCheckpoints) { 
+            // Parse checkpoint coordinates and add them to the map class.
             std::istringstream isstring(line);
             int x, y;
             char comma;
@@ -37,6 +39,7 @@ void Game::loadMap(const std::string& mapFile) {
 
         }
         else{
+            // Parse map data and add it to the map.
             std::vector<int> row;
             std::istringstream isstring(line);
 
@@ -46,6 +49,7 @@ void Game::loadMap(const std::string& mapFile) {
                     int intValue = std::stoi(value);
                     row.push_back(intValue);
                 } catch (const std::invalid_argument& e) {
+                    // Display an error message if conversion fails.
                     std::cerr << "Error converting string to integer: " << value << std::endl;
                     return;
                 }
@@ -56,6 +60,7 @@ void Game::loadMap(const std::string& mapFile) {
     }
     file.close();
 
+    // Load background images for the map.
     map.loadBackgrounds(backgroundImageFiles);
 }
 
@@ -64,12 +69,13 @@ void Game::loadMap(const std::string& mapFile) {
 std::vector<Enemy*> Game::readEnemiesFromFile(const std::string& filename) {
     std::ifstream inputFile(filename);
     if (!inputFile.is_open()) {
+        // Return an empty vector if the enemy file cannot be opened.
         return enemies;
     }
 
     char enemyType;
     while (inputFile >> enemyType) {
-        //std::cout << "creating enemy: " << enemyType << std::endl;
+        // Create enemies based on the specified type.
         enemies.push_back(this->createEnemy(enemyType));
     }
 
@@ -82,8 +88,7 @@ void Game::loadEnemies(int roundNumber) {
     enemies.clear();
     towers.clear();
 
-    // Example: Load enemies and towers for each round
-    // Adjust the number, type, and difficulty of enemies as needed
+    // Load enemies and towers for each round
     switch (roundNumber) {
         case 1:
             // Load enemies for round 1
