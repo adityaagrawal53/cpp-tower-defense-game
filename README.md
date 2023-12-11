@@ -5,4 +5,4 @@ Castle Guardians (Tower defense game)
 - Aditya Agrawal
 - Xiong Xiong
 - Khoi Nguyen Hoang
-- Member 4
+- Quang Dung Nguyen
