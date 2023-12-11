@@ -25,7 +25,7 @@ public:
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
 
-        if(!texture.loadFromFile("")) {
+        if(!texture.loadFromFile("map/default/Tower_magic.png")) {
             std::cout << "Could not load MagicTower sprite" << std::endl;
             return;
         }

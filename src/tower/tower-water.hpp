@@ -14,7 +14,7 @@ public:
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
 
-        if(!texture.loadFromFile("")) {
+        if(!texture.loadFromFile("map/default/Tower_water.png")) {
             std::cout << "Could not load WaterTower sprite" << std::endl;
             return;
         }
