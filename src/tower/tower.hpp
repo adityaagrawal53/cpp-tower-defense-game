@@ -51,7 +51,7 @@ public:
     //Draw
     virtual void draw(sf::RenderWindow& window) = 0;
 
-private:
+protected:
     std::string name;
     int damage;
     double range;
