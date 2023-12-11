@@ -6,7 +6,7 @@ void testPlant() {
     // Create a game instance for testing
     Game* game;
 
-    // Create a Plant instance
+    // Create a Plant (basic) instance
     Plant plant(game);
 
     // Test getters with default values
