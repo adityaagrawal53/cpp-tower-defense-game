@@ -17,7 +17,8 @@ void testPlant() {
     assert(plant.getCost() == 10);
     assert(plant.getDamageOverTime() == 0);
 
-    // Perform additional tests based on your specific functionalities
+    // Add additional tests if needed for specific implementations
+
 
     std::cout << "Plant tests passed successfully!" << std::endl;
 }
