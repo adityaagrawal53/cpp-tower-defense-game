@@ -7,7 +7,9 @@
 class Plant : public Tower {
 public:
     //The basic tower for our game, low cost, medium damage, medium range, and no DoT
-    Plant(std::string name = "Plant", int damage = 10, int hp = 25, double range = 2.0, int cost = 10, int damageOverTime = 0);
+    //Plant(std::string name = "Plant", int damage = 10, int hp = 25, double range = 2.0, int cost = 10, int damageOverTime = 0);
+    Plant(Game* game): Tower(game, "Water", 10, 25, 2.0, 10, 0, position){};
+
 
     void draw(sf::RenderWindow& window) {
         sf::Texture texture;
